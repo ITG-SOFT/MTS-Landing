@@ -18,5 +18,14 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'SuperUser',
+            'email' => 'root@gmail.com',
+            'password' => bcrypt('123456'),
+            'is_superadmin' => true,
+        ]);
+
+//        $this->call(ArticleSeeder::class);
     }
 }
