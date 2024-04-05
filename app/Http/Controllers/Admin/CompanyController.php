@@ -25,7 +25,6 @@ class CompanyController extends Controller
 
         $companies = Company::query();
 
-        $companies->with('photos');
         $companies->orderBy('created_at', 'DESC');
 
         $companies = $companies->get();
