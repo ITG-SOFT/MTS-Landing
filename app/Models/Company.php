@@ -43,19 +43,19 @@ class Company extends Model
     public static function createCompany(CompanyRequest $request)
     {
         $data = $request->validated();
-        $data['photo'] = self::uploadLogo($request);
+        $data['logo'] = self::uploadLogo($request);
 
-        /** @var Company $article */
-        $article = self::query()->create($data);
+        /** @var Company $company */
+        $company = self::query()->create($data);
 
 //        TemporaryFile::clearTmpFiles();
-        return $article;
+        return $company;
     }
 
     public static function updateCompany(CompanyRequest $request, self $company)
     {
         $data = $request->validated();
-        $data['photo'] = self::uploadLogo($request, $company->photo);
+        $data['logo'] = self::uploadLogo($request, $company->logo);
 
 //        TemporaryFile::clearTmpFiles();
         return $company->update($data);
