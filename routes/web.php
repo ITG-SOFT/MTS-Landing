@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\TokenController;
 use App\Http\Controllers\Admin\UserController;
@@ -48,6 +49,8 @@ Route::prefix('/admin')->name('admin.')->group(function () {
 
         Route::resource('/categories', CategoryController::class)->except(['show']);
         Route::resource('/companies', CompanyController::class)->except(['show']);
+
+        Route::resource('/feedbacks', FeedbackController::class)->except(['show']);
 
         Route::resource('/articles', ArticleController::class)->except(['show']);
 

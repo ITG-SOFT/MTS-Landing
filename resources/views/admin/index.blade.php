@@ -28,6 +28,23 @@
                     </div>
                     <!-- ./col -->
                 @endisset
+                @isset($feedback_count)
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-teal">
+                            <div class="inner">
+                                <h3>{{ $feedback_count }}</h3>
+
+                                <p>{{ __('messages.feedback.plural') }}</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-message"></i>
+                            </div>
+                            <a href="<?=route('admin.feedbacks.index')?>" class="small-box-footer">{{ __('messages.more') }} <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                @endisset
                 @isset($category_count)
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
