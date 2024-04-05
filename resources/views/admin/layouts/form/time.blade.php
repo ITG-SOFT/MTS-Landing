@@ -1,0 +1,12 @@
+<div class="form-group">
+    @isset($title)
+        <label for="{{ $name }}">{{ $title }}</label>
+    @endisset
+    <input type="time" name="{{ $name }}"
+           class="form-control @error($name) is-invalid @enderror"
+           @isset($readonly) readonly @endisset
+           @isset($with_seconds) step="1" @endisset
+           id="{{ $name }}" @isset($placeholder) placeholder="{{ $placeholder }}" @endisset
+           @if(old($name, $value ?? null)) value="{{ old($name, $value ?? null) }}" @endif
+    >
+</div>
