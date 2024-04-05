@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\Company;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,9 @@ class AuthController extends Controller
         $title = __('messages.main_page');
 
         $company_count = Company::query()->count();
+
+        $category_count = Category::query()->count();
+
         $article_count = Article::query()->count();
 
         $user_count = User::query()->count();
@@ -28,6 +32,9 @@ class AuthController extends Controller
                 'title',
 
                 'company_count',
+
+                'category_count',
+
                 'article_count',
 
                 'user_count',

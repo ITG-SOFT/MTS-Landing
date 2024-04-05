@@ -3,6 +3,7 @@
 // Note: Laravel will automatically resolve `Breadcrumbs::` without
 // this import. This is nice for IDE syntax and refactoring.
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\Company;
 use App\Models\User;
 use Diglactic\Breadcrumbs\Breadcrumbs;
@@ -61,6 +62,25 @@ Breadcrumbs::for('admin.companies.create', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('admin.companies.edit', function (BreadcrumbTrail $trail, Company $company) {
     $trail->parent('admin.companies.index');
     $trail->push(str($company->title)->words(4), route('admin.companies.edit', [$company]));
+});
+
+// Category
+// Home > Category
+Breadcrumbs::for('admin.categories.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.home');
+    $trail->push(__('messages.category.plural'), route('admin.categories.index'));
+});
+
+// Home > Category > Create
+Breadcrumbs::for('admin.categories.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.categories.index');
+    $trail->push(__('messages.category.create'), route('admin.categories.create'));
+});
+
+// Home > Category > Edit
+Breadcrumbs::for('admin.categories.edit', function (BreadcrumbTrail $trail, Category $category) {
+    $trail->parent('admin.categories.index');
+    $trail->push(str($category->title)->words(4), route('admin.categories.edit', [$category]));
 });
 
 // User
