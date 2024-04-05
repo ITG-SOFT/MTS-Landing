@@ -3,6 +3,7 @@
 // Note: Laravel will automatically resolve `Breadcrumbs::` without
 // this import. This is nice for IDE syntax and refactoring.
 use App\Models\Article;
+use App\Models\Company;
 use App\Models\User;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 
@@ -41,6 +42,25 @@ Breadcrumbs::for('admin.articles.create', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('admin.articles.edit', function (BreadcrumbTrail $trail, Article $article) {
     $trail->parent('admin.articles.index');
     $trail->push(str($article->title)->words(4), route('admin.articles.edit', [$article]));
+});
+
+// Company
+// Home > Company
+Breadcrumbs::for('admin.companies.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.home');
+    $trail->push(__('messages.company.plural'), route('admin.companies.index'));
+});
+
+// Home > Company > Create
+Breadcrumbs::for('admin.companies.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.companies.index');
+    $trail->push(__('messages.company.create'), route('admin.companies.create'));
+});
+
+// Home > Company > Edit
+Breadcrumbs::for('admin.companies.edit', function (BreadcrumbTrail $trail, Company $company) {
+    $trail->parent('admin.companies.index');
+    $trail->push(str($company->title)->words(4), route('admin.companies.edit', [$company]));
 });
 
 // User

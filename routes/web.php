@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\TokenController;
 use App\Http\Controllers\Admin\UserController;
@@ -43,6 +44,8 @@ Route::prefix('/admin')->name('admin.')->group(function () {
             Route::get('/logout', 'logout')->name('logout');
             Route::get('/', 'index')->name('home');
         });
+
+        Route::resource('/companies', CompanyController::class)->except(['show']);
 
         Route::resource('/articles', ArticleController::class)->except(['show']);
 

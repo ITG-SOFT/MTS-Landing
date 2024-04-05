@@ -28,6 +28,23 @@
                     </div>
                     <!-- ./col -->
                 @endisset
+                @isset($company_count)
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-orange">
+                            <div class="inner">
+                                <h3>{{ $company_count }}</h3>
+
+                                <p>{{ __('messages.company.plural') }}</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <a href="<?=route('admin.companies.index')?>" class="small-box-footer">{{ __('messages.more') }} <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                @endisset
             </div>
             @if(auth()->user()->is_superadmin)
                 <!-- Small boxes (Stat box) -->

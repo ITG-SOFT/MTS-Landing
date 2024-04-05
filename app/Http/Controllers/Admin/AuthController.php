@@ -5,15 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Models\Article;
-use App\Models\Country;
-use App\Models\Event;
-use App\Models\Excursion\Excursion;
-use App\Models\Excursion\ExcursionCategory;
-use App\Models\Exhibition;
-use App\Models\Place;
-use App\Models\SocialNetwork;
+use App\Models\Company;
 use App\Models\User;
-use App\Models\WeddingCeremony;
 use Illuminate\Support\Facades\Auth;
 
 // Class work with authentication and Admin main page
@@ -24,6 +17,7 @@ class AuthController extends Controller
     {
         $title = __('messages.main_page');
 
+        $company_count = Company::query()->count();
         $article_count = Article::query()->count();
 
         $user_count = User::query()->count();
@@ -33,6 +27,7 @@ class AuthController extends Controller
         return view('admin.index', compact(
                 'title',
 
+                'company_count',
                 'article_count',
 
                 'user_count',
