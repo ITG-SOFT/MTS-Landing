@@ -34,6 +34,7 @@
                                     <th>Фамилия и имя</th>
                                     <th>Рейтинг</th>
                                     <th>Фото</th>
+                                    <th>Дата</th>
                                     <th>Действия</th>
                                 </tr>
                             </thead>
@@ -46,6 +47,7 @@
                                         <td style="text-align: center; background: #303030;">
                                             <img src="{{ $feedback->getPhoto() }}" alt="{{ $feedback->title }}" style="width: 10vw;">
                                         </td>
+                                        <td>{{ $feedback->getCreatedAt() }}</td>
                                         <td>
                                             <a href="{{ route("admin.feedbacks.edit", [$feedback]) }}" class="btn btn-info btn-sm float-left mr-1">
                                                 <i class="fas fa-pencil-alt"></i>
