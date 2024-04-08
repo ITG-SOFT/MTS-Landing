@@ -4329,15 +4329,23 @@
             observeParents: true,
             slidesPerView: 5,
             spaceBetween: 20,
-            speed: 2e3,
+            speed: 800,
             parallax: true,
             breakpoints: {
                 320: {
-                    slidesPerView: 2.2,
+                    slidesPerView: 2.1,
+                    spaceBetween: 20
+                },
+                350: {
+                    slidesPerView: 2.3,
+                    spaceBetween: 20
+                },
+                490: {
+                    slidesPerView: 3.5,
                     spaceBetween: 20
                 },
                 640: {
-                    slidesPerView: 2.2,
+                    slidesPerView: 3.2,
                     spaceBetween: 20
                 },
                 768: {
@@ -4392,7 +4400,7 @@
             modules: [ Navigation, Autoplay ],
             observer: true,
             observeParents: true,
-            slidesPerView: 5,
+            slidesPerView: 6,
             spaceBetween: 20,
             speed: 2e3,
             autoplay: {
@@ -4418,7 +4426,7 @@
                     spaceBetween: 20
                 },
                 1268: {
-                    slidesPerView: 5,
+                    slidesPerView: 6,
                     spaceBetween: 30
                 }
             },
@@ -4451,7 +4459,7 @@
                     autoHeight: true
                 },
                 768: {
-                    slidesPerView: 3.5,
+                    slidesPerView: 2.5,
                     spaceBetween: 20
                 },
                 992: {

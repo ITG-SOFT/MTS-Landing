@@ -1005,9 +1005,14 @@ body::after {
 .slader-buttons {
   position: absolute;
   bottom: 10%;
-  right: 15%;
+  right: 17%;
   display: flex;
-  gap: 15px
+  gap: 15px;
+  width: 141px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center
 }
 .main-slider__image :nth-child(2) {
   display: none
@@ -1070,7 +1075,9 @@ body::after {
 }
 .main-popular-block-card__image {
   border: 10px;
-  overflow: hidden
+  overflow: hidden;
+  background: #f8f9fa;
+  border-radius: 5px
 }
 .main-popular-block-card__image img {
   max-width: 292px;
@@ -1170,6 +1177,9 @@ body::after {
   padding-bottom: 30px;
   border-bottom: 1px solid #b2b5b7
 }
+.main-brand__slide img {
+  max-width: 150px
+}
 .main-bestseller {
   margin-top: clamp(40px,4.166vw,80px)
 }
@@ -1189,14 +1199,18 @@ body::after {
   padding: 10px;
   border-radius: 10px;
   background: #fff;
-  transition: all ease .3s
+  transition: all ease .3s;
+  max-width: 300px
 }
 .main-bestseller-block-card__head {
   position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 10px
 }
 .main-bestseller-block-card__head-image img {
+  max-width: 278px;
   width: 100%
 }
 .main-bestseller-block-card__head-favorit {
@@ -1301,7 +1315,8 @@ body::after {
 }
 .swiper-button-prev._body-coast-prev {
   box-shadow: 0 0 10px 0 rgba(0,0,0,.29);
-  background: #fff
+  background: #fff;
+  top: 50%
 }
 .swiper-button-prev._body-coast-prev svg {
   stroke: #b2b5b7;
@@ -1309,7 +1324,8 @@ body::after {
 }
 .swiper-button-next._body-coast-next {
   box-shadow: 0 0 10px 0 rgba(0,0,0,.29);
-  background: #fff
+  background: #fff;
+  top: 50%
 }
 .swiper-button-next._body-coast-next svg {
   stroke: #b2b5b7;
@@ -1374,7 +1390,7 @@ body::after {
   object-fit: contain
 }
 .services {
-  margin-top: clamp(20px,1.5625vw,30px);
+  margin-top: clamp(40px,4.166vw,80px);
   margin-bottom: clamp(40px,4.1666vw,80px)
 }
 .services-block {
@@ -1613,7 +1629,8 @@ body::after {
 }
 ._rebiew-prev {
   box-shadow: 0 0 10px 0 rgba(0,0,0,.29);
-  background: #fff
+  background: #fff;
+  top: 50%
 }
 ._rebiew-prev svg {
   stroke: #b2b5b7;
@@ -1621,7 +1638,8 @@ body::after {
 }
 ._rebiew-next {
   box-shadow: 0 0 10px 0 rgba(0,0,0,.29);
-  background: #fff
+  background: #fff;
+  top: 50%
 }
 ._rebiew-next svg {
   stroke: #b2b5b7;
@@ -1630,6 +1648,7 @@ body::after {
 .subscribe {
   padding-top: clamp(40px,4.1666vw,80px);
   margin-top: clamp(40px,4.1666vw,80px);
+  padding-bottom: clamp(40px,4.166vw,80px);
   background: #f8f9fa
 }
 .subscribe__title {
@@ -1882,7 +1901,6 @@ body::after {
 .swiper-button-next,
 .swiper-button-prev {
   position: absolute;
-  top: 50%;
   z-index: 10;
   cursor: pointer;
   display: flex;
@@ -2312,13 +2330,27 @@ button.swiper-pagination-bullet {
 }
 @media (max-width:1576px) {
   .slader-buttons {
-    right: 5%;
+    right: 7%;
     bottom: 15%
   }
 }
 @media (max-width:1550px) {
   .main-slider__image img {
     height: 600px
+  }
+}
+@media (max-width:1258px) {
+  .swiper-button-prev._body-coast-prev {
+    display: none
+  }
+  .swiper-button-next._body-coast-next {
+    display: none
+  }
+  ._rebiew-prev {
+    display: none!important
+  }
+  ._rebiew-next {
+    display: none!important
   }
 }
 @media (max-width:1240px) {
@@ -2521,10 +2553,16 @@ button.swiper-pagination-bullet {
   .swiper-pagination {
     display: block
   }
+  .main-popular-block-card {
+    width: 155px
+  }
   .main-popular-block-card__image img {
-    max-width: 100%;
+    max-width: 155px;
     width: 100%;
-    height: 110px
+    min-height: 110px;
+    height: 100%;
+    -o-object-fit: contain;
+    object-fit: contain
   }
   .main-popular-block-card__title {
     font-size: 15px;
@@ -2558,18 +2596,6 @@ button.swiper-pagination-bullet {
   .swiper-slide-salle-image img {
     width: 86px;
     height: 90px
-  }
-  .swiper-button-prev._body-coast-prev {
-    display: none
-  }
-  .swiper-button-next._body-coast-next {
-    display: none
-  }
-  ._rebiew-prev {
-    display: none!important
-  }
-  ._rebiew-next {
-    display: none!important
   }
 }
 @media (max-width:481px) {
