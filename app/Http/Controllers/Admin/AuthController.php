@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\Feedback;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,7 @@ class AuthController extends Controller
 
         $feedback_count = Feedback::query()->count();
 
-        $article_count = Article::query()->count();
+        $product_count = Product::query()->count();
 
         $user_count = User::query()->count();
 
@@ -40,7 +41,7 @@ class AuthController extends Controller
 
                 'feedback_count',
 
-                'article_count',
+                'product_count',
 
                 'user_count',
 

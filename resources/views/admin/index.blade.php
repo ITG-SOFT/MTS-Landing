@@ -11,19 +11,19 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                @isset($article_count)
+                @isset($product_count)
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
                         <div class="small-box bg-gradient-secondary">
                             <div class="inner">
-                                <h3>{{ $article_count }}</h3>
+                                <h3>{{ $product_count }}</h3>
 
-                                <p>{{ __('messages.article.plural') }}</p>
+                                <p>{{ __('messages.product.plural') }}</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-newspaper"></i>
                             </div>
-                            <a href="<?=route('admin.articles.index')?>" class="small-box-footer">{{ __('messages.more') }} <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="<?=route('admin.products.index')?>" class="small-box-footer">{{ __('messages.more') }} <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->

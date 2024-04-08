@@ -22,6 +22,11 @@ class Category extends Model
         'photo',
     ];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
     public static function getCategories(int $limit = null, int $paginate = null, int $except = null, $with = [])
     {
         $categories = self::query();

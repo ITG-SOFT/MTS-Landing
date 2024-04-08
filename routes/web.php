@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\PhotoController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TokenController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
@@ -53,7 +54,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
 
         Route::resource('/feedbacks', FeedbackController::class)->except(['show']);
 
-        Route::resource('/articles', ArticleController::class)->except(['show']);
+        Route::resource('/products', ProductController::class)->except(['show']);
 
         Route::patch('/articles/{article}/publish', [ArticleController::class, 'changePublish'])->name('articles.publish');
 

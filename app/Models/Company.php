@@ -22,6 +22,11 @@ class Company extends Model
         'logo',
     ];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
     public static function getCompanies(int $limit = null, int $paginate = null, int $except = null, $with = [])
     {
         $companies = self::query();

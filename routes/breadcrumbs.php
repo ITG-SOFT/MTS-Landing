@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\Feedback;
+use App\Models\Product;
 use App\Models\User;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 
@@ -101,6 +102,25 @@ Breadcrumbs::for('admin.feedbacks.create', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('admin.feedbacks.edit', function (BreadcrumbTrail $trail, Feedback $feedback) {
     $trail->parent('admin.feedbacks.index');
     $trail->push(str($feedback->title)->words(4), route('admin.feedbacks.edit', [$feedback]));
+});
+
+// Product
+// Home > Product
+Breadcrumbs::for('admin.products.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.home');
+    $trail->push(__('messages.product.plural'), route('admin.products.index'));
+});
+
+// Home > Product > Create
+Breadcrumbs::for('admin.products.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.products.index');
+    $trail->push(__('messages.product.create'), route('admin.products.create'));
+});
+
+// Home > Product > Edit
+Breadcrumbs::for('admin.products.edit', function (BreadcrumbTrail $trail, Product $product) {
+    $trail->parent('admin.products.index');
+    $trail->push(str($product->title)->words(4), route('admin.products.edit', [$product]));
 });
 
 // User
