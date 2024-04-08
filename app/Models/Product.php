@@ -41,19 +41,23 @@ class Product extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public static function getProducts(int $limit = null, int $paginate = null, int $except = null, $with = [])
+    public function getPrice()
+    {
+        return number_format($this->price);
+    }
+
+    public function getSalePrice()
+    {
+        return number_format($this->sale_price);
+    }
+
+    public static function getProducts(int $paginate = null)
     {
         $products = self::query();
 
-        $products->when($with, function (Builder $query) use ($with) {
-            $query->with($with);
-        });
-        $products->when($limit, function (Builder $query) use ($limit) {
-            $query->limit($limit);
-        });
-        $products->when($except, function (Builder $query) use ($except) {
-            $query->whereNot('id', $except);
-        });
+        $products->with('category');
+        $products->with('company');
+
         $products->orderBy('title');
 
         return $paginate ? $products->paginate($paginate) : $products->get();

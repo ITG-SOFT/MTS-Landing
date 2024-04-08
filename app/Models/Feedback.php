@@ -44,7 +44,7 @@ class Feedback extends Model
         $feedbacks->when($except, function (Builder $query) use ($except) {
             $query->whereNot('id', $except);
         });
-        $feedbacks->orderBy('title');
+        $feedbacks->orderBy('name');
 
         return $paginate ? $feedbacks->paginate($paginate) : $feedbacks->get();
     }
