@@ -2,14 +2,14 @@
 <html lang="ru">
 
 <head>
-    <title>LandingPage</title>
+    <title>Главная MTS</title>
     <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
     <!-- <style>body{opacity: 0;}</style> -->
 
     @vite([
         'public/assets/front/intl-tel-input-master/css/intlTelInput.min.css',
-        'public/assets/front/css/style.min.css?_v=20240405161408',
+        'public/assets/front/css/style.min.css',
     ])
 
     <link rel="shortcut icon" href="{{ asset('Fav.png') }}">

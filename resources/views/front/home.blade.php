@@ -209,14 +209,18 @@
             </div>
             <div class="subscribe__subtitle">Мы ценим вас и присылаем только нужную информацию, об условиях акций и конкурсов, никакого спама!</div>
             <div class="subscribe-form">
-                <form action="#">
-                    <input type="text" name="form[email]" data-required="email" data-error="Введите E-mail корректно" placeholder="Введите ваш E-mail" class="input">
-                    <button type="submit" class="button">Подписаться</button>
+                <form data-goto-error action="{{ route('front.mail.submit') }}" method="POST">
+                    @csrf
+                    <div class="form-block">
+                        <input type="text" name="email" data-required="email" data-error="Введите E-mail корректно" placeholder="Введите ваш E-mail" class="input">
+                        <button type="submit" class="button _sibscribe-button">Подписаться</button>
+                    </div>
+                    <div class="checkbox">
+                        <input id="c_1" data-error="Ошибка" class="checkbox__input _subscribe-checkbox" type="checkbox" value="1" name="form[]" data-required="checkbox">
+                        <label for="c_1" class="checkbox__label"><span class="checkbox__text">Даю согласие на обработку моих <a href="#" target="_blank">персональных данных</a> для получения рекламно-информационной рассылки</span></label>
+                    </div>
                 </form>
-                <div class="checkbox">
-                    <input id="c_1" data-error="Ошибка" class="checkbox__input" type="checkbox" value="1" name="form[]" required>
-                    <label for="c_1" class="checkbox__label"><span class="checkbox__text">Даю согласие на обработку моих <a href="#" target="_blank">персональных данных</a> для получения рекламно-информационной рассылки</span></label>
-                </div>
+
             </div>
         </div>
     </div>

@@ -71,6 +71,8 @@ class Product extends Model
         /** @var Product $product */
         $product = self::query()->create($data);
 
+        MailingEmail::sendNewItem($product);
+
 //        TemporaryFile::clearTmpFiles();
         return $product;
     }
@@ -79,6 +81,8 @@ class Product extends Model
     {
         $data = $request->validated();
         $data['photo'] = self::uploadPhoto($request, $product->photo);
+
+        MailingEmail::sendNewItem($product);
 
 //        TemporaryFile::clearTmpFiles();
         return $product->update($data);

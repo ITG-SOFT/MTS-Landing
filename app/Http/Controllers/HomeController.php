@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\Feedback;
+use App\Models\MailingEmail;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,5 +25,36 @@ class HomeController extends Controller
             'companies',
             'products',
         ));
+    }
+
+    public function submitMail(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'email', 'max:255', 'unique:mailing_emails,email'],
+        ]);
+
+        MailingEmail::query()->create([
+            'email' => $request->email,
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function cancelMail(Request $request)
+    {
+        $email = $request->query('email');
+
+        $mail = MailingEmail::query()->where('email', $email)->firstOrFail();
+
+        $mail->delete();
+
+        return to_route('front.mail.successes-canceled');
+    }
+
+    public function successesCanceledMail(Request $request)
+    {
+        $user_id = $request->query('user_id');
+
+        return redirect()->back();
     }
 }
