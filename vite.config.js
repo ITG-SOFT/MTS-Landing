@@ -29,6 +29,10 @@ export default defineConfig({
                 'resources/assets/admin/plugins/filepond/filepond.min.css',
                 'resources/assets/admin/plugins/filepond/filepond-plugin-image-preview.min.css',
                 'resources/assets/admin/plugins/filepond/filepond-plugin-image-edit.min.css',
+
+
+                'public/assets/front/intl-tel-input-master/css/intlTelInput.min.css',
+                'public/assets/front/css/style.min.css?_v=20240405161408',
             ],
             refresh: true,
         }),
