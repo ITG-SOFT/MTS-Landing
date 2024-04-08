@@ -1,6 +1,6 @@
 (() => {
     "use strict";
-    const modules_flsModules = {};
+    const flsModules = {};
     function isWebp() {
         function testWebP(callback) {
             let webP = new Image;
@@ -13,6 +13,42 @@
             let className = support === true ? "webp" : "no-webp";
             document.documentElement.classList.add(className);
         }));
+    }
+    let isMobile = {
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function() {
+            return isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows();
+        }
+    };
+    function addTouchClass() {
+        if (isMobile.any()) document.documentElement.classList.add("touch");
+        if (document.documentElement.classList.contains("touch")) if (document.documentElement.classList.contains("touch")) {
+            const hearts = document.querySelectorAll(".heart");
+            hearts.forEach((heart => {
+                heart.style.display = "flex";
+            }));
+            const compares = document.querySelectorAll(".compare");
+            compares.forEach((compare => {
+                compare.style.display = "flex";
+            }));
+        }
+    }
+    function getHash() {
+        if (location.hash) return location.hash.replace("#", "");
     }
     let bodyLockStatus = true;
     let bodyLockToggle = (delay = 500) => {
@@ -57,7 +93,7 @@
             }
         }));
     }
-    function functions_menuClose() {
+    function menuClose() {
         bodyUnlock();
         document.documentElement.classList.remove("menu-open");
     }
@@ -159,6 +195,8 @@
                 const buttonClose = e.target.closest(`[${this.options.attributeCloseButton}]`);
                 if (buttonClose || !e.target.closest(`.${this.options.classes.popupContent}`) && this.isOpen) {
                     e.preventDefault();
+                    if (e.target.closest(".delit")) return;
+                    if (e.target.closest(".remove-all")) return;
                     this.close();
                     return;
                 }
@@ -311,8 +349,8 @@
             this.options.logging ? FLS(`[Попапос]: ${message}`) : null;
         }
     }
-    modules_flsModules.popup = new Popup({});
-    let gotoblock_gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
+    flsModules.popup = new Popup({});
+    let gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
         const targetBlockElement = document.querySelector(targetBlock);
         if (targetBlockElement) {
             let headerItem = "";
@@ -337,7 +375,7 @@
                 offset: offsetTop,
                 easing: "easeOutQuad"
             };
-            document.documentElement.classList.contains("menu-open") ? functions_menuClose() : null;
+            document.documentElement.classList.contains("menu-open") ? menuClose() : null;
             if (typeof SmoothScroll !== "undefined") (new SmoothScroll).animateScroll(targetBlockElement, "", options); else {
                 let targetBlockElementPosition = targetBlockElement.getBoundingClientRect().top + scrollY;
                 targetBlockElementPosition = headerItemHeight ? targetBlockElementPosition - headerItemHeight : targetBlockElementPosition;
@@ -456,11 +494,11 @@
                     const checkbox = checkboxes[index];
                     checkbox.checked = false;
                 }
-                if (modules_flsModules.select) {
+                if (flsModules.select) {
                     let selects = form.querySelectorAll("div.select");
                     if (selects.length) for (let index = 0; index < selects.length; index++) {
                         const select = selects[index].querySelector("select");
-                        modules_flsModules.select.selectBuild(select);
+                        flsModules.select.selectBuild(select);
                     }
                 }
             }), 0);
@@ -511,7 +549,7 @@
                 e.preventDefault();
                 if (form.querySelector("._form-error") && form.hasAttribute("data-goto-error")) {
                     const formGoToErrorClass = form.dataset.gotoError ? form.dataset.gotoError : "._form-error";
-                    gotoblock_gotoBlock(formGoToErrorClass, true, 1e3);
+                    gotoBlock(formGoToErrorClass, true, 1e3);
                 }
             }
         }
@@ -522,9 +560,9 @@
                 }
             }));
             setTimeout((() => {
-                if (modules_flsModules.popup) {
+                if (flsModules.popup) {
                     const popup = form.dataset.popupMessage;
-                    popup ? modules_flsModules.popup.open(popup) : null;
+                    popup ? flsModules.popup.open(popup) : null;
                 }
             }), 0);
             formValidate.formClean(form);
@@ -533,6 +571,25 @@
         function formLogging(message) {
             FLS(`[Форми]: ${message}`);
         }
+    }
+    function formQuantity() {
+        document.addEventListener("click", (function(e) {
+            let targetElement = e.target;
+            if (targetElement.closest("[data-quantity-plus]") || targetElement.closest("[data-quantity-minus]")) {
+                const valueElement = targetElement.closest("[data-quantity]").querySelector("[data-quantity-value]");
+                let value = parseInt(valueElement.value);
+                if (targetElement.hasAttribute("data-quantity-plus")) {
+                    value++;
+                    if (+valueElement.dataset.quantityMax && +valueElement.dataset.quantityMax < value) value = valueElement.dataset.quantityMax;
+                } else {
+                    --value;
+                    if (+valueElement.dataset.quantityMin) {
+                        if (+valueElement.dataset.quantityMin > value) value = valueElement.dataset.quantityMin;
+                    } else if (value < 1) value = 1;
+                }
+                targetElement.closest("[data-quantity]").querySelector("[data-quantity-value]").value = value;
+            }
+        }));
     }
     function ssr_window_esm_isObject(obj) {
         return obj !== null && typeof obj === "object" && "constructor" in obj && obj.constructor === Object;
@@ -4520,6 +4577,51 @@
         initSliders();
     }));
     let addWindowScrollEvent = false;
+    function pageNavigation() {
+        document.addEventListener("click", pageNavigationAction);
+        document.addEventListener("watcherCallback", pageNavigationAction);
+        function pageNavigationAction(e) {
+            if (e.type === "click") {
+                const targetElement = e.target;
+                if (targetElement.closest("[data-goto]")) {
+                    const gotoLink = targetElement.closest("[data-goto]");
+                    const gotoLinkSelector = gotoLink.dataset.goto ? gotoLink.dataset.goto : "";
+                    const noHeader = gotoLink.hasAttribute("data-goto-header") ? true : false;
+                    const gotoSpeed = gotoLink.dataset.gotoSpeed ? gotoLink.dataset.gotoSpeed : 500;
+                    const offsetTop = gotoLink.dataset.gotoTop ? parseInt(gotoLink.dataset.gotoTop) : 0;
+                    if (flsModules.fullpage) {
+                        const fullpageSection = document.querySelector(`${gotoLinkSelector}`).closest("[data-fp-section]");
+                        const fullpageSectionId = fullpageSection ? +fullpageSection.dataset.fpId : null;
+                        if (fullpageSectionId !== null) {
+                            flsModules.fullpage.switchingSection(fullpageSectionId);
+                            document.documentElement.classList.contains("menu-open") ? menuClose() : null;
+                        }
+                    } else gotoBlock(gotoLinkSelector, noHeader, gotoSpeed, offsetTop);
+                    e.preventDefault();
+                }
+            } else if (e.type === "watcherCallback" && e.detail) {
+                const entry = e.detail.entry;
+                const targetElement = entry.target;
+                if (targetElement.dataset.watch === "navigator") {
+                    document.querySelector(`[data-goto]._navigator-active`);
+                    let navigatorCurrentItem;
+                    if (targetElement.id && document.querySelector(`[data-goto="#${targetElement.id}"]`)) navigatorCurrentItem = document.querySelector(`[data-goto="#${targetElement.id}"]`); else if (targetElement.classList.length) for (let index = 0; index < targetElement.classList.length; index++) {
+                        const element = targetElement.classList[index];
+                        if (document.querySelector(`[data-goto=".${element}"]`)) {
+                            navigatorCurrentItem = document.querySelector(`[data-goto=".${element}"]`);
+                            break;
+                        }
+                    }
+                    if (entry.isIntersecting) navigatorCurrentItem ? navigatorCurrentItem.classList.add("_navigator-active") : null; else navigatorCurrentItem ? navigatorCurrentItem.classList.remove("_navigator-active") : null;
+                }
+            }
+        }
+        if (getHash()) {
+            let goToHash;
+            if (document.querySelector(`#${getHash()}`)) goToHash = `#${getHash()}`; else if (document.querySelector(`.${getHash()}`)) goToHash = `.${getHash()}`;
+            goToHash ? gotoBlock(goToHash, true, 500, 20) : null;
+        }
+    }
     setTimeout((() => {
         if (addWindowScrollEvent) {
             let windowScroll = new Event("windowScroll");
@@ -4612,11 +4714,130 @@
     }
     const da = new DynamicAdapt("max");
     da.init();
+    const sibscribeButton = document.querySelector("._sibscribe-button");
+    const subscribeCheckbox = document.querySelector("._subscribe-checkbox");
+    if (sibscribeButton) sibscribeButton.disabled = true;
+    if (subscribeCheckbox) subscribeCheckbox.addEventListener("change", (function() {
+        if (this.checked) {
+            if (sibscribeButton) sibscribeButton.disabled = false;
+        } else if (sibscribeButton) sibscribeButton.disabled = true;
+    }));
+    const hearts = document.querySelectorAll(".heart");
+    const likeCount = document.querySelector(".like-count");
+    const likeCompare = document.querySelector(".compare-count");
+    const compares = document.querySelectorAll(".compare");
+    document.querySelectorAll(".delit");
+    function increaseLikeCount() {
+        likeCount.style.display = "flex";
+        likeCount.innerText = parseInt(likeCount.innerText) + 1;
+    }
+    function decreaseLikeCount() {
+        const currentCount = parseInt(likeCount.innerText);
+        if (currentCount > 0) {
+            likeCount.innerText = currentCount - 1;
+            if (currentCount - 1 === 0) likeCount.style.display = "none";
+        }
+    }
+    function increaseCompareCount() {
+        likeCompare.style.display = "flex";
+        likeCompare.innerText = parseInt(likeCompare.innerText) + 1;
+    }
+    function decreaseCompareCount() {
+        const currentCount = parseInt(likeCompare.innerText);
+        if (currentCount > 0) {
+            likeCompare.innerText = currentCount - 1;
+            if (currentCount - 1 === 0) likeCompare.style.display = "none";
+        }
+    }
+    function deleteRowAndUpdateData(button) {
+        const index = parseInt(button.getAttribute("data-index"));
+        const rowToDelete = button.closest("tr");
+        rowToDelete.remove();
+        decreaseCount(button);
+        updateLocalStorage(index);
+        hearts.forEach(((heart, idx) => {
+            if (idx === index) heart.classList.remove("heart-active");
+        }));
+    }
+    function decreaseCount(button) {
+        const countElement = button.classList.contains("delit") ? likeCount : likeCompare;
+        const currentCount = parseInt(countElement.innerText);
+        if (currentCount > 0) {
+            countElement.innerText = currentCount - 1;
+            if (currentCount - 1 === 0) countElement.style.display = "none";
+        }
+    }
+    function updateLocalStorage(index) {
+        let products = JSON.parse(localStorage.getItem("favoriteProducts")) || [];
+        products.splice(index, 1);
+        localStorage.setItem("favoriteProducts", JSON.stringify(products));
+    }
+    const deleteButtons = document.querySelectorAll(".delit");
+    deleteButtons.forEach((button => {
+        button.addEventListener("click", (function(e) {
+            e.preventDefault();
+            deleteRowAndUpdateData(button);
+        }));
+    }));
+    hearts.forEach((heart => {
+        heart.addEventListener("click", (function() {
+            const isActive = this.classList.contains("heart-active");
+            this.classList.toggle("heart-active");
+            if (isActive && !this.classList.contains("heart-active")) decreaseLikeCount(); else if (!isActive && this.classList.contains("heart-active")) increaseLikeCount();
+        }));
+    }));
+    compares.forEach((compare => {
+        compare.addEventListener("click", (function() {
+            const isActive = this.classList.contains("compare-active");
+            this.classList.toggle("compare-active");
+            if (isActive && !this.classList.contains("compare-active")) decreaseCompareCount(); else if (!isActive && this.classList.contains("compare-active")) increaseCompareCount();
+        }));
+    }));
+    function addRowsToTable() {
+        const tbody = document.querySelector(".popup-favorite-table-body");
+        tbody.innerHTML = "";
+        const activeHearts = document.querySelectorAll(".heart-active");
+        if (activeHearts.length === 0) return;
+        const products = [];
+        activeHearts.forEach(((heart, index) => {
+            const card = heart.closest(".main-bestseller-block-card");
+            const image = card.querySelector(".main-bestseller-block-card__head-image img").getAttribute("src");
+            const name = card.querySelector(".main-bestseller-block-card__body-title h5").textContent;
+            const model = card.querySelector(".main-bestseller-block-card__body-type").textContent;
+            const price = card.querySelector(".body-coast-block__price span").textContent.trim();
+            const row = document.createElement("tr");
+            row.innerHTML = `\n            <td class="image-table"><img src="${image}" alt="Image"></td>\n            <td class="name-table">${name}</td>\n            <td class="model-table">${model}</td>\n            <td class="availability-table">В наличии</td>\n            <td class="price-table">${price} руб</td>\n            <td class="buttons-table" >\n                <div class="buttons-table-block">\n                    <a data-popup="#popup" class="header-body__panel-cart" href="#">\n                        <span><svg>\n                            <use xlink:href="img/icons/icons.svg#cart"></use>\n                        </svg></span>\n                    </a>\n                    <span data-index="${index}" class="delit">\n                        <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">\n                            <path d="M8.40234 8.5L22.4023 22.5M8.40234 22.5L22.4023 8.5"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>\n                        </svg>\n                    </span>\n                </div>\n            </td>\n        `;
+            tbody.appendChild(row);
+            products.push({
+                image,
+                name,
+                model,
+                availability: "В наличии",
+                price: price + " руб",
+                action: "Добавить в избранное"
+            });
+        }));
+        localStorage.setItem("favoriteProducts", JSON.stringify(products));
+        const deleteButtons = document.querySelectorAll(".delit");
+        deleteButtons.forEach((button => {
+            button.addEventListener("click", (function(e) {
+                e.preventDefault();
+                deleteRowAndUpdateData(button);
+            }));
+        }));
+    }
+    const heartElements = document.querySelectorAll(".heart");
+    heartElements.forEach((heart => {
+        heart.addEventListener("click", addRowsToTable);
+    }));
     isWebp();
+    addTouchClass();
     menuInit();
     formFieldsInit({
         viewPass: false,
         autoHeight: false
     });
     formSubmit();
+    formQuantity();
+    pageNavigation();
 })();
