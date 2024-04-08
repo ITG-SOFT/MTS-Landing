@@ -61,6 +61,8 @@ Route::prefix('/admin')->name('admin.')->group(function () {
 
         Route::resource('/products', ProductController::class)->except(['show']);
 
+        Route::resource('/articles', ArticleController::class)->except(['show']);
+
         Route::patch('/articles/{article}/publish', [ArticleController::class, 'changePublish'])->name('articles.publish');
 
         Route::delete('/photos/{photo}', [PhotoController::class, 'destroyPhoto'])->name('photos.destroy');

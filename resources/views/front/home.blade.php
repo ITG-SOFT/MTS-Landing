@@ -72,12 +72,12 @@
             </div>
             <div class="swiper-pagination"></div>
             <div class="slader-buttons">
-                <button type="button" class="swiper-button-prev">
+                <button type="button" class="swiper-button-next">
                     <svg>
                         <use xlink:href="{{ asset('assets/front/img/icons/icons.svg#right') }}"></use>
                     </svg>
                 </button>
-                <button type="button" class="swiper-button-next">
+                <button type="button" class="swiper-button-prev">
                     <svg>
                         <use xlink:href="{{ asset('assets/front/img/icons/icons.svg#left') }}"></use>
                     </svg>
