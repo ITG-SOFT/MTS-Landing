@@ -41,6 +41,11 @@ class Product extends Model
         return $this->belongsTo(Company::class);
     }
 
+    public function attributeValues()
+    {
+        return $this->hasMany(AttributeValue::class);
+    }
+
     public function getPrice()
     {
         return number_format($this->price);
@@ -71,7 +76,25 @@ class Product extends Model
         /** @var Product $product */
         $product = self::query()->create($data);
 
-        MailingEmail::sendNewItem($product);
+        if (isset($data['attributes'])) {
+            foreach ($data['attributes'] as $k => $value) {
+                /** @var AttributeValue $attribute_value */
+                $attribute_value = $product->attributeValues()->where('attribute_id', $k)->first();
+
+                if ($attribute_value) {
+                    $attribute_value->update([
+                        'value' => $value,
+                    ]);
+                } else {
+                    $product->attributeValues()->create([
+                        'value' => $value,
+                        'attribute_id' => $k,
+                    ]);
+                }
+            }
+        }
+
+//        MailingEmail::sendNewItem($product);
 
 //        TemporaryFile::clearTmpFiles();
         return $product;
@@ -82,7 +105,25 @@ class Product extends Model
         $data = $request->validated();
         $data['photo'] = self::uploadPhoto($request, $product->photo);
 
-        MailingEmail::sendNewItem($product);
+        if (isset($data['attributes'])) {
+            foreach ($data['attributes'] as $k => $value) {
+                /** @var AttributeValue $attribute_value */
+                $attribute_value = $product->attributeValues()->where('attribute_id', $k)->first();
+
+                if ($attribute_value) {
+                    $attribute_value->update([
+                        'value' => $value,
+                    ]);
+                } else {
+                    $product->attributeValues()->create([
+                        'value' => $value,
+                        'attribute_id' => $k,
+                    ]);
+                }
+            }
+        }
+
+//        MailingEmail::sendNewItem($product);
 
 //        TemporaryFile::clearTmpFiles();
         return $product->update($data);

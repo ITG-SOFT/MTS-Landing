@@ -66,3 +66,16 @@
         ])
     </div>
 </div>
+
+@foreach($product->category->attributes as $attribute)
+    @php
+        $attribute_value = $product->attributeValues()->where('attribute_id', $attribute->id)->first();
+    @endphp
+
+    @include('admin.layouts.form.text', [
+        'title' => $attribute->title,
+        'name' => "attributes[{$attribute->id}]",
+        'placeholder' => $attribute->title,
+        'value' => $attribute_value->value ?? null,
+    ])
+@endforeach
