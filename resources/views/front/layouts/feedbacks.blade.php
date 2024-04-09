@@ -14,10 +14,10 @@
                                     <div class="main-review-card-head__info">
                                         <div class="main-review-card-head__info-star">{{ $feedback->rate }},0
                                             <span>
-                                                    <svg>
-                                                        <use xlink:href="{{ asset('assets/front/img/icons/icons.svg#star') }}"></use>
-                                                    </svg>
-                                                </span>
+                                                <svg>
+                                                    <use xlink:href="{{ asset('assets/front/img/icons/icons.svg#star') }}"></use>
+                                                </svg>
+                                            </span>
                                         </div>
                                         <div class="ain-review-card-head__info-title">
                                             <h5>{{ $feedback->name }}</h5>
@@ -30,7 +30,7 @@
                                         {!! $feedback->text !!}
                                     </div>
                                     <div class="main-review-card-body__button">
-                                        <a href="#">
+                                        <a data-popup="#reviev-popup" href="#">
                                             <span>Все отзывы</span>
                                             <svg>
                                                 <use xlink:href="{{ asset('assets/front/img/icons/icons.svg#right') }}"></use>
@@ -42,7 +42,6 @@
                         </div>
                     @endforeach
                 </div>
-
 
                 <button type="button" class="swiper-button-prev _rebiew-prev">
                     <svg>

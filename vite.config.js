@@ -32,7 +32,7 @@ export default defineConfig({
 
 
                 'public/assets/front/intl-tel-input-master/css/intlTelInput.min.css',
-                'public/assets/front/css/style.min.css?_v=20240405161408',
+                'public/assets/front/css/style.min.css',
             ],
             refresh: true,
         }),
