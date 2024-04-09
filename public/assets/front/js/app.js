@@ -4830,6 +4830,58 @@
     heartElements.forEach((heart => {
         heart.addEventListener("click", addRowsToTable);
     }));
+    document.addEventListener("DOMContentLoaded", (function() {
+        const tabButtons = document.querySelectorAll("[data-tabs-titles] .tabs__title");
+        const tabContents = document.querySelectorAll("[data-tabs-body] .tabs__body");
+        tabContents.forEach(((content, index) => {
+            if (index !== 0) content.style.display = "none";
+        }));
+        tabButtons.forEach(((button, index) => {
+            button.addEventListener("click", (() => {
+                tabContents.forEach((content => {
+                    content.style.display = "none";
+                }));
+                tabContents[index].style.display = "block";
+                tabButtons.forEach((btn => {
+                    btn.classList.remove("_tab-active");
+                }));
+                button.classList.add("_tab-active");
+            }));
+        }));
+    }));
+    const popupSearchBoxInput = document.querySelector("._search-input");
+    const searchDropdown = document.querySelector(".drop-search");
+    const cartBlock = document.querySelector(".search-atem-link__cart");
+    if (popupSearchBoxInput && searchDropdown && cartBlock) {
+        let isDropdownOpen = false;
+        popupSearchBoxInput.addEventListener("focus", (() => {
+            if (!popupSearchBoxInput.classList.contains("_form-focus")) {
+                popupSearchBoxInput.classList.add("_form-focus");
+                searchDropdown.classList.add("search-dropdown-active");
+                isDropdownOpen = true;
+            }
+        }));
+        popupSearchBoxInput.addEventListener("blur", (() => {
+            setTimeout((() => {
+                if (!searchDropdown.contains(document.activeElement)) {
+                    popupSearchBoxInput.classList.remove("_form-focus");
+                    if (!cartBlock.contains(document.activeElement)) {
+                        searchDropdown.classList.remove("search-dropdown-active");
+                        isDropdownOpen = false;
+                    }
+                }
+            }), 0);
+        }));
+        document.addEventListener("click", (event => {
+            const isLinkInsideDropdown = event.target.tagName === "A" && searchDropdown.contains(event.target);
+            const isCartBlockClicked = event.target === cartBlock || cartBlock.contains(event.target);
+            if (isDropdownOpen && (isLinkInsideDropdown || isCartBlockClicked)) {
+                if (isLinkInsideDropdown) console.log("Link clicked:", event.target.href);
+                searchDropdown.classList.remove("search-dropdown-active");
+                isDropdownOpen = false;
+            }
+        }));
+    }
     isWebp();
     addTouchClass();
     menuInit();
