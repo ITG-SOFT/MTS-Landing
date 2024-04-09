@@ -25,6 +25,7 @@ class CategoryController extends Controller
 
         $categories = Category::query();
 
+        $categories->with('attributes');
         $categories->orderBy('created_at', 'DESC');
 
         $categories = $categories->get();

@@ -11,6 +11,25 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
+                @isset($article_count)
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-teal">
+                            <div class="inner">
+                                <h3>{{ $article_count }}</h3>
+
+                                <p>{{ __('messages.article.plural') }}</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                            <a href="<?=route('admin.articles.index')?>" class="small-box-footer">{{ __('messages.more') }} <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                @endisset
+            </div>
+            <div class="row">
                 @isset($product_count)
                     <div class="col-lg-3 col-6">
                         <!-- small box -->

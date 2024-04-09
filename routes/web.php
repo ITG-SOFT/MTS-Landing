@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CompanyController;
@@ -55,6 +56,11 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         });
 
         Route::resource('/categories', CategoryController::class)->except(['show']);
+
+        Route::prefix('/categories/{category}')->name('categories.')->group(function () {
+            Route::resource('/attributes', AttributeController::class)->except(['index', 'show']);
+        });
+
         Route::resource('/companies', CompanyController::class)->except(['show']);
 
         Route::resource('/feedbacks', FeedbackController::class)->except(['show']);

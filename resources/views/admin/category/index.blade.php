@@ -34,6 +34,7 @@
                                     <th>Название</th>
                                     <th>Псевдоним</th>
                                     <th>Фото</th>
+                                    <th>Свойства</th>
                                     <th>Действия</th>
                                 </tr>
                             </thead>
@@ -46,6 +47,7 @@
                                         <td style="text-align: center; background: #303030;">
                                             <img src="{{ $category->getPhoto() }}" alt="{{ $category->title }}" style="width: 10vw;">
                                         </td>
+                                        @include('admin.category.attribute.index')
                                         <td>
                                             <a href="{{ route("admin.categories.edit", [$category]) }}" class="btn btn-info btn-sm float-left mr-1">
                                                 <i class="fas fa-pencil-alt"></i>
