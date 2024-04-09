@@ -2,3 +2,9 @@
 .main-review-card-head__user img {
    object-fit: cover;
 }
+.compare-image-block {
+   padding: 0 10px;
+}
+.header-body__button button span {
+   font-family: "MTS Sans", sans-serif;
+}

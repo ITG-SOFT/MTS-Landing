@@ -12,7 +12,7 @@
                     <div class="main-bestseller-block__wrapper swiper-wrapper">
                         <!-- Слайд -->
                         @foreach($products as $product)
-                            <div class="main-bestseller-block__slide swiper-slide">
+                            <div class="main-bestseller-block__slide swiper-slide" data-category="{{ $product->category_id }}" data-id="{{ $product->id }}">
                                 <div class="main-bestseller-block-card">
                                     <div class="main-bestseller-block-card__head">
                                         <div class="main-bestseller-block-card__head-image">

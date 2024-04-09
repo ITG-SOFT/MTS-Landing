@@ -48,12 +48,12 @@ class Product extends Model
 
     public function getPrice()
     {
-        return number_format($this->price);
+        return number_format($this->price, thousands_separator: '');
     }
 
     public function getSalePrice()
     {
-        return number_format($this->sale_price);
+        return number_format($this->sale_price, thousands_separator: '');
     }
 
     public static function getProducts(int $paginate = null)
@@ -94,7 +94,7 @@ class Product extends Model
             }
         }
 
-//        MailingEmail::sendNewItem($product);
+        MailingEmail::sendNewItem($product);
 
 //        TemporaryFile::clearTmpFiles();
         return $product;
@@ -123,7 +123,7 @@ class Product extends Model
             }
         }
 
-//        MailingEmail::sendNewItem($product);
+        MailingEmail::sendNewItem($product);
 
 //        TemporaryFile::clearTmpFiles();
         return $product->update($data);

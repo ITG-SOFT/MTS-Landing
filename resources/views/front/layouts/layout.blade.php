@@ -115,7 +115,7 @@
                             <input autocomplete="off" type="search" name="form[]" placeholder="Поиск товара" class="input">
                         </div>
                         <div class="header-body__panel">
-                            <a class="header-body__panel-compare" href="#">
+                            <a data-popup="#compared" class="header-body__panel-compare" href="#">
                                 <span>
                                     <svg>
                                         <use xlink:href="{{ asset('assets/front/img/icons/icons.svg#sr') }}"></use>
@@ -132,15 +132,6 @@
                                 </span>
                                 <span>Избранное</span>
                                 <div class="like-count">0</div>
-                            </a>
-                            <a class="header-body__panel-cart" href="#">
-                                <span>
-                                    <svg>
-                                        <use xlink:href="{{ asset('assets/front/img/icons/icons.svg#cart') }}"></use>
-                                    </svg>
-                                </span>
-                                <span>Корзина</span>
-                                <div class="cart-count">0</div>
                             </a>
                         </div>
                     </div>
@@ -269,6 +260,7 @@
             </div>
         </footer>
     </div>
+    <script src="{{ asset('assets/front/backend/compare.js') }}"></script>
     <script src="{{ asset('assets/front/js/app.min.js?_v=20240408125514') }}"></script>
 
     <div id="popup" aria-hidden="true" class="popup">
@@ -660,6 +652,77 @@
             </div>
         </div>
     </div>
+
+    @include('front.layouts.compared')
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js?_v=20240408205909"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js?_v=20240408205909"></script>
+    <script>
+        $(document).ready(function() {
+            $('.product__slider-main').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                asNavFor: '.product__slider-thmb',
+                loop: true
+            });
+
+            $('.product__slider-thmb').slick({
+                slidesToShow: 4,
+                // slidesToScroll: 1,
+                asNavFor: '.product__slider-main',
+                centerMode: false,
+                focusOnSelect: true,
+                vertical: true,
+                arrows: false,
+                // loop: true,
+                draggable: false,
+                loop: true,
+                responsive: [{
+                    breakpoint: 320,
+                    settings: {
+                        slidesToShow: 2,
+                        //   slidesToScroll: 1
+                    },
+                    breakpoint: 370,
+                    settings: {
+                        slidesToShow: 2,
+                        //   slidesToScroll: 1
+                    },
+                    breakpoint: 946,
+                    settings: {
+                        vertical: false,
+                    }
+                }],
+                draggable: false,
+                swipe: false,
+                loop: true,
+            });
+
+        })
+    </script>
+
+    <script>
+        document.querySelector('.compared-block-table').addEventListener('mousedown', function(event) {
+            event.preventDefault();
+            const startX = event.pageX - this.offsetLeft;
+            const scrollLeft = this.scrollLeft;
+            this.style.cursor = 'grabbing';
+
+            document.onmousemove = e => {
+                const x = e.pageX - this.offsetLeft;
+                const walk = (x - startX) * 2;
+                this.scrollLeft = scrollLeft - walk;
+            };
+
+            document.onmouseup = () => {
+                this.style.cursor = 'grab';
+                document.onmousemove = null;
+                document.onmouseup = null;
+            };
+        });
+    </script>
+
     <script src="{{ asset('assets/front/intl-tel-input-master/js/intlTelInput.min.js') }}"></script>
     <script>
         var input = document.querySelector("#phone");
