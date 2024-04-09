@@ -46,12 +46,12 @@
     'value' => $article->text ?? null,
 ])
 
-@include('admin.layouts.form.filepond-file', [
-    'title' => 'Фотографии для галереи',
-    'name' => 'photos[]',
-    'id' => 'photos',
-    'multiple' => true,
-])
+{{--@include('admin.layouts.form.filepond-file', [--}}
+{{--    'title' => 'Фотографии для галереи',--}}
+{{--    'name' => 'photos[]',--}}
+{{--    'id' => 'photos',--}}
+{{--    'multiple' => true,--}}
+{{--])--}}
 
 {{--@include('admin.layouts.form.file', [--}}
 {{--    'title' => 'Фотографии для галереи',--}}
@@ -59,7 +59,3 @@
 {{--    'pre_text' => "Выбрать фото",--}}
 {{--    'multiple' => true,--}}
 {{--])--}}
-
-{{--@section('scripts')--}}
-{{--    @include('admin.layouts.filepond-script')--}}
-{{--@endsection--}}

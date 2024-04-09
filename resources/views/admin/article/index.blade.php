@@ -34,7 +34,6 @@
                                     <th>Название</th>
                                     <th>Псевдоним</th>
                                     <th>Фото</th>
-                                    <th>Фотографии</th>
                                     <th>Дата создания</th>
                                     <th>Дата обновления</th>
                                     <th>Действия</th>
@@ -49,9 +48,6 @@
                                         <td style="text-align: center; background: #303030;">
                                             <img src="{{ $article->getPhoto() }}" alt="{{ $article->title }}" style="width: 10vw;">
                                         </td>
-                                        @include('admin.photo.index-td', [
-                                            'photos' => $article->photos,
-                                        ])
                                         <td>{{ $article->getCreatedAt() }}</td>
                                         <td>{{ $article->getUpdatedAt() }}</td>
                                         <td>

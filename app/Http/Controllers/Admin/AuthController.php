@@ -28,6 +28,8 @@ class AuthController extends Controller
 
         $product_count = Product::query()->count();
 
+        $article_count = Article::query()->count();
+
         $user_count = User::query()->count();
 
         $token_count = auth()->user()->tokens()->count();
@@ -42,6 +44,8 @@ class AuthController extends Controller
                 'feedback_count',
 
                 'product_count',
+
+                'article_count',
 
                 'user_count',
 
