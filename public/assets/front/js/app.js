@@ -386,8 +386,8 @@
                     behavior: "smooth"
                 });
             }
-            FLS(`[gotoBlock]:  до ${targetBlock}`);
-        } else FLS(`[gotoBlock]: ой... : ${targetBlock}`);
+            FLS(`[gotoBlock]: Юхуу...їдемо до ${targetBlock}`);
+        } else FLS(`[gotoBlock]: Йой... Такого блоку немає на сторінці: ${targetBlock}`);
     };
     function formFieldsInit(options = {
         viewPass: false,
@@ -4392,8 +4392,7 @@
             breakpoints: {
                 320: {
                     slidesPerView: 2.1,
-                    spaceBetween: 20,
-                    autoHeight: true,
+                    spaceBetween: 20
                 },
                 350: {
                     slidesPerView: 2.3,
@@ -4727,7 +4726,7 @@
     const hearts = document.querySelectorAll(".heart");
     const likeCount = document.querySelector(".like-count");
     const likeCompare = document.querySelector(".compare-count");
-    const compares = document.querySelectorAll(".compare");
+    document.querySelectorAll(".compare");
     document.querySelectorAll(".delit");
     function increaseLikeCount() {
         likeCount.style.display = "flex";
@@ -4738,17 +4737,6 @@
         if (currentCount > 0) {
             likeCount.innerText = currentCount - 1;
             if (currentCount - 1 === 0) likeCount.style.display = "none";
-        }
-    }
-    function increaseCompareCount() {
-        likeCompare.style.display = "flex";
-        likeCompare.innerText = parseInt(likeCompare.innerText) + 1;
-    }
-    function decreaseCompareCount() {
-        const currentCount = parseInt(likeCompare.innerText);
-        if (currentCount > 0) {
-            likeCompare.innerText = currentCount - 1;
-            if (currentCount - 1 === 0) likeCompare.style.display = "none";
         }
     }
     function deleteRowAndUpdateData(button) {
@@ -4786,13 +4774,6 @@
             const isActive = this.classList.contains("heart-active");
             this.classList.toggle("heart-active");
             if (isActive && !this.classList.contains("heart-active")) decreaseLikeCount(); else if (!isActive && this.classList.contains("heart-active")) increaseLikeCount();
-        }));
-    }));
-    compares.forEach((compare => {
-        compare.addEventListener("click", (function() {
-            const isActive = this.classList.contains("compare-active");
-            // this.classList.toggle("compare-active");
-            if (isActive && !this.classList.contains("compare-active")) decreaseCompareCount(); else if (!isActive && this.classList.contains("compare-active")) increaseCompareCount();
         }));
     }));
     function addRowsToTable() {
@@ -4854,13 +4835,17 @@
     const popupSearchBoxInput = document.querySelector("._search-input");
     const searchDropdown = document.querySelector(".drop-search");
     const cartBlock = document.querySelector(".search-atem-link__cart");
-    if (popupSearchBoxInput && searchDropdown && cartBlock) {
+    const dropSearchBlockList = document.querySelector(".drop-search-block-list");
+    const dropSearchBlockItems = document.querySelector(".drop-search-block-items");
+    if (popupSearchBoxInput && searchDropdown && cartBlock && dropSearchBlockList && dropSearchBlockItems) {
         let isDropdownOpen = false;
         popupSearchBoxInput.addEventListener("focus", (() => {
             if (!popupSearchBoxInput.classList.contains("_form-focus")) {
                 popupSearchBoxInput.classList.add("_form-focus");
-                searchDropdown.classList.add("search-dropdown-active");
-                isDropdownOpen = true;
+                if (dropSearchBlockList.textContent.trim().length > 0 || dropSearchBlockItems.textContent.trim().length > 0) {
+                    searchDropdown.classList.add("search-dropdown-active");
+                    isDropdownOpen = true;
+                }
             }
         }));
         popupSearchBoxInput.addEventListener("blur", (() => {
