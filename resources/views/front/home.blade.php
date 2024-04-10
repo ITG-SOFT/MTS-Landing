@@ -184,7 +184,7 @@
                     </div>
                     <div class="main-video-block-info__text">Более 80 000+ положительных отзывов об устройствах умного дома (4,8/5,0 рейтинг). Вот самые популярные из них</div>
                     <div class="main-video-block-info__button">
-                        <a href="#">
+                        <a data-goto="#review" href="#">
                             <span>Все отзывы</span>
                             <svg>
                                 <use xlink:href="{{ asset('assets/front/img/icons/icons.svg#right') }}"></use>

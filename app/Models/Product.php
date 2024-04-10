@@ -11,10 +11,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
-    use HasFactory, MediaTrait, FormatDateTrait, Sluggable;
+    use HasFactory, MediaTrait, FormatDateTrait, Sluggable, Searchable;
 
     protected $fillable = [
         'title',
@@ -48,12 +49,12 @@ class Product extends Model
 
     public function getPrice()
     {
-        return number_format($this->price, thousands_separator: '');
+        return number_format($this->price, thousands_separator: ' ');
     }
 
     public function getSalePrice()
     {
-        return number_format($this->sale_price, thousands_separator: '');
+        return number_format($this->sale_price, thousands_separator: ' ');
     }
 
     public function updateAttributes(array $attributes)
@@ -101,7 +102,7 @@ class Product extends Model
             $product->updateAttributes($data['attributes']);
         }
 
-//        MailingEmail::sendNewItem($product);
+        MailingEmail::sendNewItem($product);
 
 //        TemporaryFile::clearTmpFiles();
         return $product;
@@ -116,7 +117,7 @@ class Product extends Model
             $product->updateAttributes($data['attributes']);
         }
 
-//        MailingEmail::sendNewItem($product);
+        MailingEmail::sendNewItem($product);
 
 //        TemporaryFile::clearTmpFiles();
         return $product->update($data);
@@ -160,6 +161,19 @@ class Product extends Model
             'slug' => [
                 'source' => 'title'
             ]
+        ];
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array<string, mixed>
+     */
+    public function toSearchableArray(): array
+    {
+        return [
+            'title' => $this->title,
+            'slug' => $this->slug,
         ];
     }
 }
