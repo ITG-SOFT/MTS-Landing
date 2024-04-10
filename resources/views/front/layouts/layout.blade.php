@@ -106,13 +106,161 @@
                                 <span>Каталог</span>
                             </button>
                         </div>
-                        <div data-da=".menu__body,992,0" class="header-body__search">
+                        <div data-da=".menu__body,992,0" class="header-body__search _search-drop">
                             <label>
                                 <svg>
                                     <use xlink:href="{{ asset('assets/front/img/icons/icons.svg#search') }}"></use>
                                 </svg>
                             </label>
-                            <input autocomplete="off" type="search" name="form[]" placeholder="Поиск товара" class="input">
+                            <input autocomplete="off" type="search" name="form[]" placeholder="Поиск товара" class="input _search-input">
+                            <!-- search -->
+                            <div class="drop-search">
+                                <div class="drop-search-block">
+                                    <div class="drop-search-block-list">
+                                        <ul>
+                                            <li><a href="#" target="_blank">Портативная колонка</a></li>
+                                            <li><a href="#" target="_blank">Портативный аккумулятор</a></li>
+                                            <li><a href="#" target="_blank">Портативный пылесос</a></li>
+                                            <li><a href="#" target="_blank">Портативная акустика</a></li>
+                                            <li><a href="#" target="_blank">Портативная зарядное устройство</a></li>
+                                        </ul>
+                                        <div class="drop-search-block-list__title">
+                                            <h5>Категории</h5>
+                                        </div>
+                                        <ul>
+                                            <li>
+                                                <ul>
+                                                    <li><span class="result-search">Порта</span>
+                                                        <a class="result-search-link-goods" href="#" target="_blank">1287 товаров</a>
+                                                    </li>
+                                                    <li>
+                                                        <span class="result-search-categori">В категории</span>
+                                                        <a class="result-search-link-categori" href="#" target="_blank">Портативная акустика</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <ul>
+                                                    <li><span class="result-search">Порта</span>
+                                                        <a class="result-search-link-goods" href="#" target="_blank">1287 товаров</a>
+                                                    </li>
+                                                    <li>
+                                                        <span class="result-search-categori">В категории</span>
+                                                        <a class="result-search-link-categori" href="#" target="_blank">Портативный зарядные устройства</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <ul>
+                                                    <li><span class="result-search">Порта</span>
+                                                        <a class="result-search-link-goods" href="#" target="_blank">425 товаров</a>
+                                                    </li>
+                                                    <li>
+                                                        <span class="result-search-categori">В категории</span>
+                                                        <a class="result-search-link-categori" href="#" target="_blank">Умные колонки</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="drop-search-block-items">
+                                        <ul>
+                                            <li>
+                                                <a href="#" class="drop-search-block-items-link">
+                                                    <div class="search-atem-link__image"><img src="img/card/06.png" alt="Image"></div>
+                                                    <div class="search-atem-link__title">
+                                                        <h5>Портативная колонка Xiaomi Mi Outdoor Speaker Blue (MDZ-36-DB)</h5>
+                                                    </div>
+                                                    <div class="search-atem-link__coast">
+														<span>129
+															руб</span>
+                                                        <s>149 руб</s>
+                                                    </div>
+                                                    <div data-popup="#popup" class="search-atem-link__cart">
+                                                        <svg>
+                                                            <use xlink:href="img/icons/icons.svg#cart"></use>
+                                                        </svg>
+                                                    </div>
+                                                </a>
+
+                                            </li>
+                                            <li>
+                                                <a href="#" class="drop-search-block-items-link">
+                                                    <div class="search-atem-link__image"><img src="img/card/07.png" alt="Image"></div>
+                                                    <div class="search-atem-link__title">
+                                                        <h5>Портативный блендер Deerma DEM-NU05</h5>
+                                                    </div>
+                                                    <div class="search-atem-link__coast">
+														<span>85
+															руб</span>
+                                                        <s>95 руб</s>
+                                                    </div>
+                                                    <div data-popup="#popup" class="search-atem-link__cart">
+                                                        <svg>
+                                                            <use xlink:href="img/icons/icons.svg#cart"></use>
+                                                        </svg>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="drop-search-block-items-link">
+                                                    <div class="search-atem-link__image"><img src="img/card/08.png" alt="Image"></div>
+                                                    <div class="search-atem-link__title">
+                                                        <h5>Портативная минисистема LG X-Boom OL90DK</h5>
+                                                    </div>
+                                                    <div class="search-atem-link__coast">
+														<span>
+															1 799
+															руб</span>
+                                                        <s></s>
+                                                    </div>
+                                                    <div data-popup="#popup" class="search-atem-link__cart">
+                                                        <svg>
+                                                            <use xlink:href="img/icons/icons.svg#cart"></use>
+                                                        </svg>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="drop-search-block-items-link">
+                                                    <div class="search-atem-link__image"><img src="img/card/09.png" alt="Image"></div>
+                                                    <div class="search-atem-link__title">
+                                                        <h5>Портативное пусковое устройство Baseus CGNL020101</h5>
+                                                    </div>
+                                                    <div class="search-atem-link__coast">
+														<span>179
+															руб</span>
+                                                        <s>199 руб</s>
+                                                    </div>
+                                                    <div data-popup="#popup" class="search-atem-link__cart">
+                                                        <svg>
+                                                            <use xlink:href="img/icons/icons.svg#cart"></use>
+                                                        </svg>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="drop-search-block-items-link">
+                                                    <div class="search-atem-link__image"><img src="img/card/10.png" alt="Image"></div>
+                                                    <div class="search-atem-link__title">
+                                                        <h5>Портативная колонка Xiaomi Mi Outdoor Speaker Black (MDZ-36-DB)</h5>
+                                                    </div>
+                                                    <div class="search-atem-link__coast">
+														<span>129
+															руб</span>
+                                                        <s>149 руб</s>
+                                                    </div>
+                                                    <div data-popup="#popup" class="search-atem-link__cart">
+                                                        <svg>
+                                                            <use xlink:href="img/icons/icons.svg#cart"></use>
+                                                        </svg>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="header-body__panel">
                             <a data-popup="#compared" class="header-body__panel-compare" href="#">

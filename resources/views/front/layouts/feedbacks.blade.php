@@ -1,6 +1,6 @@
 @isset($feedbacks)
     <!-- main-video -->
-    <div class="main-review">
+    <div class="main-review" id="review">
         <div class="main-review__container">
             <div class="main-review__slider swiper">
                 <div class="main-review__wrapper swiper-wrapper">
