@@ -133,10 +133,8 @@ compareButtons.forEach(function (item) {
 
                 }
 
-                this.classList.add("compare-active");
             } else {
                 removeCompareItem(id);
-                this.classList.remove("compare-active");
             }
         }
         updateProductCount();

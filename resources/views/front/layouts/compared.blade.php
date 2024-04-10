@@ -24,31 +24,6 @@
                                 <tr class="row-title">
                                     <td>Общая информация</td>
                                 </tr>
-{{--                                <tr class="row-compare">--}}
-{{--                                    <td class="row-compare-title">Цвет</td>--}}
-{{--                                    <td>Белый</td>--}}
-{{--                                    <td>Белый</td>--}}
-{{--                                </tr>--}}
-{{--                                <tr class="row-compare">--}}
-{{--                                    <td class="row-compare-title">Тип</td>--}}
-{{--                                    <td>Увлажнитель</td>--}}
-{{--                                    <td>Увлажнитель</td>--}}
-{{--                                </tr>--}}
-{{--                                <tr class="row-compare">--}}
-{{--                                    <td class="row-compare-title">Потребляемая мощность</td>--}}
-{{--                                    <td>23 Вт</td>--}}
-{{--                                    <td>25 Вт</td>--}}
-{{--                                </tr>--}}
-{{--                                <tr class="row-compare">--}}
-{{--                                    <td class="row-compare-title">Автоматическое поддержание уровня влажности</td>--}}
-{{--                                    <td>нет</td>--}}
-{{--                                    <td class="compared">Да</td>--}}
-{{--                                </tr>--}}
-{{--                                <tr class="row-compare">--}}
-{{--                                    <td class="row-compare-title">Верхний долив воды</td>--}}
-{{--                                    <td>Да</td>--}}
-{{--                                    <td>Да</td>--}}
-{{--                                </tr>--}}
                                 <!-- Повторите это для каждой строки -->
                             </tbody>
                         </table>
