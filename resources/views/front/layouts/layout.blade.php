@@ -92,7 +92,7 @@
                         </div>
 
                         <div class="header-body__logo">
-                            <a href="index.html">
+                            <a href="/">
                                 <svg>
                                     <use xlink:href="{{ asset('assets/front/img/icons/icons.svg#logo') }}"></use>
                                 </svg>
@@ -173,7 +173,7 @@
                 <div class="footer-block">
                     <div class="footer-block-logo">
                         <div class="footer-block-logo__logo">
-                            <a href="index.html">
+                            <a href="/">
                                 <svg>
                                     <use xlink:href="{{ asset('assets/front/img/icons/icons.svg#logo') }}"></use>
                                 </svg>
@@ -260,7 +260,6 @@
             </div>
         </footer>
     </div>
-    <script src="{{ asset('assets/front/backend/compare.js') }}"></script>
     <script src="{{ asset('assets/front/js/app.min.js?_v=20240408125514') }}"></script>
 
     <div id="popup" aria-hidden="true" class="popup">
@@ -315,7 +314,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- popup accepted -->
     <div id="accepted" aria-hidden="true" class="popup _popup-accepted">
@@ -736,6 +734,42 @@
 
         }));
     </script>
+
+    <script>
+
+        const reviewLinks = document.querySelectorAll('a[data-popup="#reviev-popup"]');
+        const popup = document.getElementById('reviev-popup');
+
+        reviewLinks.forEach(reviewLink => {
+            reviewLink.addEventListener('click', event => {
+                event.preventDefault();
+                const reviewCard = reviewLink.closest('.main-review-card');
+
+                // Получаем данные из карточки
+                const userImageSrc = reviewCard.querySelector('.main-review-card-head__user img').src;
+                const userName = reviewCard.querySelector('.ain-review-card-head__info-title h5').innerText;
+                const userRating = reviewCard.querySelector('.main-review-card-head__info-star').innerText;
+                const reviewDate = reviewCard.querySelector('.ain-review-card-head__info-date').innerText;
+                const reviewContent = reviewCard.querySelector('.main-review-card-body p').innerHTML;
+
+                // Заполняем попап данными из карточки
+                const popupUserImage = popup.querySelector('.main-review-card-head__user img');
+                const popupUserName = popup.querySelector('.ain-review-card-head__info-title h5');
+                const popupUserRating = popup.querySelector('.main-review-card-head__info-star');
+                const popupReviewDate = popup.querySelector('.ain-review-card-head__info-date');
+                const popupReviewContent = popup.querySelector('.main-review-card-body p');
+
+                popupUserImage.src = userImageSrc;
+                popupUserName.innerText = userName;
+                popupUserRating.innerHTML = userRating + ' <span><svg><use xlink:href="img/icons/icons.svg#star"></use></svg></span>';
+                popupReviewDate.innerText = reviewDate;
+                popupReviewContent.innerHTML = reviewContent;
+            });
+        });
+    </script>
+
+
+    <script src="{{ asset('assets/front/backend/compare.js') }}"></script>
 </body>
 </html>
 

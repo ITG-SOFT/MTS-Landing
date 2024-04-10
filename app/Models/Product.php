@@ -56,6 +56,27 @@ class Product extends Model
         return number_format($this->sale_price, thousands_separator: '');
     }
 
+    public function updateAttributes(array $attributes)
+    {
+        foreach ($attributes as $k => $value) {
+            /** @var AttributeValue $attribute_value */
+            $attribute_value = $this->attributeValues()->where('attribute_id', $k)->first();
+
+            if ($value) {
+                if ($attribute_value) {
+                    $attribute_value->update([
+                        'value' => $value,
+                    ]);
+                } else {
+                    $this->attributeValues()->create([
+                        'value' => $value,
+                        'attribute_id' => $k,
+                    ]);
+                }
+            }
+        }
+    }
+
     public static function getProducts(int $paginate = null)
     {
         $products = self::query();
@@ -77,24 +98,10 @@ class Product extends Model
         $product = self::query()->create($data);
 
         if (isset($data['attributes'])) {
-            foreach ($data['attributes'] as $k => $value) {
-                /** @var AttributeValue $attribute_value */
-                $attribute_value = $product->attributeValues()->where('attribute_id', $k)->first();
-
-                if ($attribute_value) {
-                    $attribute_value->update([
-                        'value' => $value,
-                    ]);
-                } else {
-                    $product->attributeValues()->create([
-                        'value' => $value,
-                        'attribute_id' => $k,
-                    ]);
-                }
-            }
+            $product->updateAttributes($data['attributes']);
         }
 
-        MailingEmail::sendNewItem($product);
+//        MailingEmail::sendNewItem($product);
 
 //        TemporaryFile::clearTmpFiles();
         return $product;
@@ -106,24 +113,10 @@ class Product extends Model
         $data['photo'] = self::uploadPhoto($request, $product->photo);
 
         if (isset($data['attributes'])) {
-            foreach ($data['attributes'] as $k => $value) {
-                /** @var AttributeValue $attribute_value */
-                $attribute_value = $product->attributeValues()->where('attribute_id', $k)->first();
-
-                if ($attribute_value) {
-                    $attribute_value->update([
-                        'value' => $value,
-                    ]);
-                } else {
-                    $product->attributeValues()->create([
-                        'value' => $value,
-                        'attribute_id' => $k,
-                    ]);
-                }
-            }
+            $product->updateAttributes($data['attributes']);
         }
 
-        MailingEmail::sendNewItem($product);
+//        MailingEmail::sendNewItem($product);
 
 //        TemporaryFile::clearTmpFiles();
         return $product->update($data);

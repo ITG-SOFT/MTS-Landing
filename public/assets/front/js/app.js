@@ -4789,7 +4789,7 @@
     compares.forEach((compare => {
         compare.addEventListener("click", (function() {
             const isActive = this.classList.contains("compare-active");
-            this.classList.toggle("compare-active");
+            // this.classList.toggle("compare-active");
             if (isActive && !this.classList.contains("compare-active")) decreaseCompareCount(); else if (!isActive && this.classList.contains("compare-active")) increaseCompareCount();
         }));
     }));
