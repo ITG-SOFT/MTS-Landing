@@ -197,6 +197,7 @@
                     e.preventDefault();
                     if (e.target.closest(".delit")) return;
                     if (e.target.closest(".remove-all")) return;
+                    if (e.target.closest(".compare-image-block__close")) return;
                     this.close();
                     return;
                 }
@@ -385,8 +386,8 @@
                     behavior: "smooth"
                 });
             }
-            FLS(`[gotoBlock]: Юхуу...їдемо до ${targetBlock}`);
-        } else FLS(`[gotoBlock]: Йой... Такого блоку немає на сторінці: ${targetBlock}`);
+            FLS(`[gotoBlock]:  до ${targetBlock}`);
+        } else FLS(`[gotoBlock]: ой... : ${targetBlock}`);
     };
     function formFieldsInit(options = {
         viewPass: false,
@@ -4391,7 +4392,8 @@
             breakpoints: {
                 320: {
                     slidesPerView: 2.1,
-                    spaceBetween: 20
+                    spaceBetween: 20,
+                    autoHeight: true,
                 },
                 350: {
                     slidesPerView: 2.3,

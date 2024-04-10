@@ -8,3 +8,35 @@
 .header-body__button button span {
    font-family: "MTS Sans", sans-serif;
 }
+@media(max-width: 376px) {
+   .main-slider__image img {
+      height: 200px;
+   }
+   .main-slider__slide {
+      justify-content: space-between;
+      /* height: 400px; */
+
+   }
+   .main-slider__title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    height: 90px;
+   }
+}
+@media(max-width: 533px) {
+   .main-slider__title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    height: 90px;
+   }
+   .swiper-pagination {
+      bottom: 190px !important;
+
+   }
+}
