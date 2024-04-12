@@ -599,7 +599,8 @@ body::after {
 .delit {
   display: flex;
   align-items: center;
-  justify-content: center
+  justify-content: center;
+  cursor: pointer
 }
 .delit:hover svg {
   stroke: #e30611
@@ -2624,6 +2625,16 @@ body::after {
   fill: #58595b;
   transition: fill ease .3s
 }
+.main-review-card-head__user img {
+  -o-object-fit: cover;
+  object-fit: cover
+}
+.compare-image-block {
+  padding: 0 10px
+}
+.header-body__button button span {
+  font-family: "MTS Sans",sans-serif
+}
 .swiper {
   overflow: hidden
 }
@@ -3546,6 +3557,19 @@ button.swiper-pagination-bullet {
     flex-direction: column
   }
 }
+@media (max-width:533px) {
+  .main-slider__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    height: 90px
+  }
+  .swiper-pagination {
+    bottom: 190px!important
+  }
+}
 @media (max-width:530px) {
   .product__slider-main {
     max-width: 100%;
@@ -3634,6 +3658,25 @@ button.swiper-pagination-bullet {
   }
   .subscribe-form form button {
     max-width: 100%
+  }
+  .form-block {
+    flex-direction: column
+  }
+}
+@media (max-width:376px) {
+  .main-slider__image img {
+    height: 200px
+  }
+  .main-slider__slide {
+    justify-content: space-between
+  }
+  .main-slider__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    height: 90px
   }
 }
 @media (max-width:375px) {

@@ -198,6 +198,8 @@
                     if (e.target.closest(".delit")) return;
                     if (e.target.closest(".remove-all")) return;
                     if (e.target.closest(".compare-image-block__close")) return;
+                    if (e.target.closest(".drop-search-block-list a")) return;
+                    if (e.target.closest(".drop-search-block-items a")) return;
                     this.close();
                     return;
                 }
@@ -4726,7 +4728,7 @@
     const hearts = document.querySelectorAll(".heart");
     const likeCount = document.querySelector(".like-count");
     const likeCompare = document.querySelector(".compare-count");
-    document.querySelectorAll(".compare");
+    const compares = document.querySelectorAll(".compare");
     document.querySelectorAll(".delit");
     function increaseLikeCount() {
         likeCount.style.display = "flex";
@@ -4737,6 +4739,17 @@
         if (currentCount > 0) {
             likeCount.innerText = currentCount - 1;
             if (currentCount - 1 === 0) likeCount.style.display = "none";
+        }
+    }
+    function increaseCompareCount() {
+        likeCompare.style.display = "flex";
+        likeCompare.innerText = parseInt(likeCompare.innerText) + 1;
+    }
+    function decreaseCompareCount() {
+        const currentCount = parseInt(likeCompare.innerText);
+        if (currentCount > 0) {
+            likeCompare.innerText = currentCount - 1;
+            if (currentCount - 1 === 0) likeCompare.style.display = "none";
         }
     }
     function deleteRowAndUpdateData(button) {
@@ -4774,6 +4787,13 @@
             const isActive = this.classList.contains("heart-active");
             this.classList.toggle("heart-active");
             if (isActive && !this.classList.contains("heart-active")) decreaseLikeCount(); else if (!isActive && this.classList.contains("heart-active")) increaseLikeCount();
+        }));
+    }));
+    compares.forEach((compare => {
+        compare.addEventListener("click", (function() {
+            const isActive = this.classList.contains("compare-active");
+            this.classList.toggle("compare-active");
+            if (isActive && !this.classList.contains("compare-active")) decreaseCompareCount(); else if (!isActive && this.classList.contains("compare-active")) increaseCompareCount();
         }));
     }));
     function addRowsToTable() {
@@ -4864,7 +4884,6 @@
             const isCartBlockClicked = event.target === cartBlock || cartBlock.contains(event.target);
             if (isDropdownOpen && (isLinkInsideDropdown || isCartBlockClicked)) {
                 if (isLinkInsideDropdown) console.log("Link clicked:", event.target.href);
-                searchDropdown.classList.remove("search-dropdown-active");
                 isDropdownOpen = false;
             }
         }));
