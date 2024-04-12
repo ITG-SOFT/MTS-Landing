@@ -40,6 +40,9 @@ const removeCompareItem = (id) => {
         }
     }
 
+    const compareButton = document.querySelector(`.main-bestseller .main-bestseller-block__slide[data-id="${id}"] .compare`);
+    compareButton.classList.remove('compare-active');
+
     updateProductCount();
 };
 
@@ -52,8 +55,6 @@ const updateProductCount = () => {
         compareCount.style.display = 'none';
     }
 };
-
-updateProductCount();
 
 compareButtons.forEach(function (item) {
     item.addEventListener('click', async function (event) {
