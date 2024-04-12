@@ -36,7 +36,7 @@ const updateSearchResultList = (data) => {
     searchBlock.insertAdjacentHTML('beforeend', container);
 };
 
-searchField.addEventListener('change', async (event) => {
+searchField.addEventListener('input', async (event) => {
     const s = event.currentTarget.value;
     const result = await fetch(`/api/search?s=${s}`);
 
