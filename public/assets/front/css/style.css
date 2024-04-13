@@ -2635,6 +2635,213 @@ body::after {
 .header-body__button button span {
   font-family: "MTS Sans",sans-serif
 }
+.main-review-card-body__button a {
+  outline: 0
+}
+button {
+  outline: 0
+}
+.drop-search-block {
+  justify-content: space-between
+}
+.drop-search-block-items {
+  width: 100%
+}
+.drop-search-block-items ul li {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #b2b5b7
+}
+.drop-search-block-list {
+  width: 40%
+}
+a {
+  outline: 0
+}
+.main-bestseller-block-card__head-image {
+  cursor: pointer
+}
+input,
+textarea {
+  outline: 0
+}
+@-webkit-keyframes toastDuration {
+  from {
+    width: 0%
+  }
+  to {
+    Width: 100%
+  }
+}
+@keyframes toastDuration {
+  from {
+    width: 0%
+  }
+  to {
+    Width: 100%
+  }
+}
+.toast-container {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 8888;
+  display: block;
+  width: auto;
+  max-width: 350px;
+  width: 100%
+}
+.toast {
+  /* display: none; */
+  max-width: 350px;
+  width: 100%;
+  min-height: 60px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: grey;
+  overflow: hidden;
+  position: relative
+}
+.toast-status-icon {
+  display: block;
+  float: left;
+  height: 50px;
+  width: 50px;
+  padding: 16px 0 16px 8px
+}
+.toast-status-icon svg {
+  display: block;
+  width: 28px;
+  height: 28px
+}
+.toast-content {
+  display: block;
+  float: left;
+  width: calc(100% - 57px);
+  padding: 8px 16px 8px 6px
+}
+.toast-content span {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  line-height: inherit
+}
+.toast-content p {
+  font-size: 16px;
+  color: #fff;
+  line-height: inherit;
+  margin-top: 1px
+}
+.toast-close {
+  display: block;
+  float: right;
+  clear: right;
+  width: 25px;
+  height: 25px;
+  margin-top: 4px;
+  margin-right: 4px;
+  padding: 5px;
+  background: 0 0;
+  background-color: transparent;
+  position: absolute;
+  right: 0
+}
+.toast-close svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  -webkit-transform: none;
+  transform: none
+}
+.toast-duration {
+  position: relative;
+  display: block;
+  float: none;
+  clear: both;
+  height: 3px;
+  width: 100%;
+  background-color: grey;
+  position: absolute;
+  bottom: 0
+}
+.toast-duration::after {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: inherit;
+  background-color: green;
+  -webkit-animation-name: toastDuration;
+  animation-name: toastDuration;
+  -webkit-animation-duration: 10s;
+  animation-duration: 10s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear
+}
+.success {
+  max-width: 350px;
+  width: 100%;
+  background: #e9fbe9;
+  color: #178217
+}
+.success svg {
+  fill: #1fad1f;
+  color: rgba(40,167,70,.4784313725)
+}
+.success span {
+  color: #1fad1f
+}
+.success p {
+  color: #178217
+}
+.success .toast-duration {
+  background-color: rgba(40,167,70,.4784313725)
+}
+.success .toast-duration::after {
+  background-color: #28a745
+}
+.error {
+  background: #fde9e7;
+  color: #f7a8a1
+}
+.error svg {
+  fill: #ec2513;
+  color: #f7a8a1
+}
+.error span {
+  color: #ec2513
+}
+.error p {
+  color: #8e160b
+}
+.error .toast-duration {
+  background-color: #f7a8a1
+}
+.error .toast-duration::after {
+  background-color: #ec2513
+}
+.info {
+  background: #e6f1ff
+}
+.info svg {
+  fill: #006be5;
+  color: #f7a8a1
+}
+.info span {
+  color: #006be6
+}
+.info p {
+  color: #003c80
+}
+.info .toast-duration {
+  background-color: #80bbff
+}
+.info .toast-duration::after {
+  background-color: #006be5
+}
 .swiper {
   overflow: hidden
 }

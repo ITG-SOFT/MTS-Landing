@@ -1,3 +1,5 @@
+
+
 (() => {
     "use strict";
     const flsModules = {};
@@ -4725,6 +4727,28 @@
             if (sibscribeButton) sibscribeButton.disabled = false;
         } else if (sibscribeButton) sibscribeButton.disabled = true;
     }));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     const hearts = document.querySelectorAll(".heart");
     const likeCount = document.querySelector(".like-count");
     const likeCompare = document.querySelector(".compare-count");
@@ -4733,6 +4757,7 @@
     function increaseLikeCount() {
         likeCount.style.display = "flex";
         likeCount.innerText = parseInt(likeCount.innerText) + 1;
+        
     }
     function decreaseLikeCount() {
         const currentCount = parseInt(likeCount.innerText);
@@ -4785,15 +4810,30 @@
     hearts.forEach((heart => {
         heart.addEventListener("click", (function() {
             const isActive = this.classList.contains("heart-active");
-            this.classList.toggle("heart-active");
-            if (isActive && !this.classList.contains("heart-active")) decreaseLikeCount(); else if (!isActive && this.classList.contains("heart-active")) increaseLikeCount();
+            
+            
+            if (isActive) {
+                this.classList.remove("heart-active");
+                decreaseLikeCount();
+                showToast('info', 'Like removed');//тест
+         
+            } else {
+                this.classList.add("heart-active");
+                increaseLikeCount();
+                showToast('success', 'Like added');//тест
+            }
         }));
     }));
     compares.forEach((compare => {
         compare.addEventListener("click", (function() {
             const isActive = this.classList.contains("compare-active");
-            this.classList.toggle("compare-active");
-            if (isActive && !this.classList.contains("compare-active")) decreaseCompareCount(); else if (!isActive && this.classList.contains("compare-active")) increaseCompareCount();
+            if (isActive) {
+                this.classList.remove("compare-active");
+                decreaseCompareCount();
+            } else {
+                this.classList.add("compare-active");
+                increaseCompareCount();
+            }
         }));
     }));
     function addRowsToTable() {
@@ -4852,42 +4892,85 @@
             }));
         }));
     }));
+
+
+
+    // const popupSearchBoxInput = document.querySelector("._search-input");
+    // const searchDropdown = document.querySelector(".drop-search");
+    // const cartBlock = document.querySelector(".search-atem-link__cart");
+    // const dropSearchBlockList = document.querySelector(".drop-search-block-list");
+    // const dropSearchBlockItems = document.querySelector(".drop-search-block-items");
+    // if (popupSearchBoxInput && searchDropdown && cartBlock && dropSearchBlockList && dropSearchBlockItems) {
+    //     let isDropdownOpen = false;
+    //     popupSearchBoxInput.addEventListener("focus", (() => {
+    //         if (!popupSearchBoxInput.classList.contains("_form-focus")) {
+    //             popupSearchBoxInput.classList.add("_form-focus");
+    //             searchDropdown.classList.add("search-dropdown-active");
+    //             isDropdownOpen = true;
+    //         }
+    //     }));
+    //     popupSearchBoxInput.addEventListener("blur", (() => {
+    //         setTimeout((() => {
+    //             if (!searchDropdown.contains(document.activeElement)) {
+    //                 popupSearchBoxInput.classList.remove("_form-focus");
+    //                 if (!cartBlock.contains(document.activeElement)) {
+    //                     searchDropdown.classList.remove("search-dropdown-active");
+    //                     isDropdownOpen = false;
+    //                 }
+    //             }
+    //         }), 0);
+    //     }));
+    //     document.addEventListener("click", (event => {
+    //         const isLinkInsideDropdown = event.target.tagName === "A" && searchDropdown.contains(event.target);
+    //         const isCartBlockClicked = event.target === cartBlock || cartBlock.contains(event.target);
+    //         if (isDropdownOpen && (isLinkInsideDropdown || isCartBlockClicked)) {
+    //             if (isLinkInsideDropdown) console.log("Link clicked:", event.target.href);
+    //             isDropdownOpen = false;
+    //         }
+    //     }));
+    // }
+
     const popupSearchBoxInput = document.querySelector("._search-input");
     const searchDropdown = document.querySelector(".drop-search");
     const cartBlock = document.querySelector(".search-atem-link__cart");
-    const dropSearchBlockList = document.querySelector(".drop-search-block-list");
-    const dropSearchBlockItems = document.querySelector(".drop-search-block-items");
-    if (popupSearchBoxInput && searchDropdown && cartBlock && dropSearchBlockList && dropSearchBlockItems) {
-        let isDropdownOpen = false;
-        popupSearchBoxInput.addEventListener("focus", (() => {
+    
+    let isDropdownOpen = false;
+    
+    if (popupSearchBoxInput && searchDropdown ) {
+        popupSearchBoxInput.addEventListener("focus", () => {
             if (!popupSearchBoxInput.classList.contains("_form-focus")) {
                 popupSearchBoxInput.classList.add("_form-focus");
-                if (dropSearchBlockList.textContent.trim().length > 0 || dropSearchBlockItems.textContent.trim().length > 0) {
-                    searchDropdown.classList.add("search-dropdown-active");
-                    isDropdownOpen = true;
-                }
+                searchDropdown.classList.add("search-dropdown-active");
+                isDropdownOpen = true;
             }
-        }));
-        popupSearchBoxInput.addEventListener("blur", (() => {
-            setTimeout((() => {
+        });
+    
+        popupSearchBoxInput.addEventListener("blur", () => {
+            setTimeout(() => {
                 if (!searchDropdown.contains(document.activeElement)) {
                     popupSearchBoxInput.classList.remove("_form-focus");
-                    if (!cartBlock.contains(document.activeElement)) {
+                    // if (!cartBlock.contains(document.activeElement)) {
                         searchDropdown.classList.remove("search-dropdown-active");
                         isDropdownOpen = false;
-                    }
+                    // }
                 }
-            }), 0);
-        }));
-        document.addEventListener("click", (event => {
-            const isLinkInsideDropdown = event.target.tagName === "A" && searchDropdown.contains(event.target);
+            }, 0);
+        });
+    
+        document.addEventListener("click", event => {
             const isCartBlockClicked = event.target === cartBlock || cartBlock.contains(event.target);
-            if (isDropdownOpen && (isLinkInsideDropdown || isCartBlockClicked)) {
-                if (isLinkInsideDropdown) console.log("Link clicked:", event.target.href);
+            if (isDropdownOpen && isCartBlockClicked) {
                 isDropdownOpen = false;
             }
-        }));
+        });
     }
+    
+
+
+
+
+
+
     isWebp();
     addTouchClass();
     menuInit();

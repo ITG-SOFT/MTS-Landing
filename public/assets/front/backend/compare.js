@@ -132,11 +132,15 @@ compareButtons.forEach(function (item) {
                         }
                     }
 
+                    showToast('success', 'Товар добавлен для сравнения');
                 }
-
             } else {
                 removeCompareItem(id);
+
+                showToast('success', 'Товар удалён из сравнения');
             }
+        } else {
+            showToast('error', 'Товар должен быть из одной категории');
         }
         updateProductCount();
     });
