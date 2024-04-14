@@ -68,6 +68,18 @@ class Product extends Model
         return number_format($this->sale_price, thousands_separator: ' ');
     }
 
+    public function getStars()
+    {
+        $count = $this->feedbacks()->count();
+        if ($count == 0) {
+            return 0;
+        }
+
+        $sum = $this->feedbacks()->sum('rate');
+
+        return number_format($sum / $count, 1);
+    }
+
     public function updateAttributes(array $attributes)
     {
         foreach ($attributes as $k => $value) {
@@ -96,6 +108,7 @@ class Product extends Model
         $products->with('category');
         $products->with('company');
         $products->with('photos');
+        $products->with('feedbacks');
 
         $products->orderBy('title');
 

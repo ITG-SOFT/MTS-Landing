@@ -224,4 +224,8 @@
             </div>
         </div>
     </div>
+
+    @foreach($products as $product)
+        @include('front.layouts.card')
+    @endforeach
 @endsection

@@ -7,6 +7,7 @@
     <meta name="format-detection" content="telephone=no">
     <!-- <style>body{opacity: 0;}</style> -->
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css?_v=20240412165459" />
     @vite([
         'public/assets/front/intl-tel-input-master/css/intlTelInput.min.css',
         'public/assets/front/css/style.min.css',
@@ -17,6 +18,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf" content="{{ csrf_token() }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        .compare-active svg {
+            stroke: #e30611
+        }
+    </style>
 </head>
 
 <body>
@@ -362,7 +369,7 @@
                                 <div class="main-review-card-head__info-star">4,9
                                     <span>
                                         <svg>
-											<use xlink:href="img/icons/icons.svg#star"></use>
+											<use xlink:href="{{ asset('assets/front/img/icons/icons.svg#star') }}"></use>
 										</svg>
                                     </span>
                                 </div>
@@ -759,7 +766,7 @@
 
                 popupUserImage.src = userImageSrc;
                 popupUserName.innerText = userName;
-                popupUserRating.innerHTML = userRating + ' <span><svg><use xlink:href="img/icons/icons.svg#star"></use></svg></span>';
+                popupUserRating.innerHTML = userRating + ' <span><svg><use xlink:href="{{ asset('assets/front/img/icons/icons.svg#star') }}"></use></svg></span>';
                 popupReviewDate.innerText = reviewDate;
                 popupReviewContent.innerHTML = reviewContent;
             });

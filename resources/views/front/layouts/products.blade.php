@@ -1,3 +1,4 @@
+@php use App\Http\Resources\ProductResource; @endphp
 @isset($products)
     <!-- main-brand -->
     <section class="main-bestseller">
@@ -16,7 +17,7 @@
                                 <div class="main-bestseller-block-card">
                                     <div class="main-bestseller-block-card__head">
                                         <div class="main-bestseller-block-card__head-image">
-                                            <img src="{{ $product->getPhoto() }}" alt="{{ $product->title }}">
+                                            <img data-popup="#card-{{ $product->id }}" src="{{ $product->getPhoto() }}" alt="{{ $product->title }}">
                                         </div>
                                         <div class="main-bestseller-block-card__head-favorit">
                                             <span class="heart">
@@ -47,13 +48,15 @@
                                                 </div>
                                                 <a data-popup="#popup" href="#" class="body-coast-block__cart">
                                                     <svg>
-                                                        <use xlink:href="{{ asset('assets/front/img/icons/icons.svg#cart') }}"></use>
+                                                        <use
+                                                            xlink:href="{{ asset('assets/front/img/icons/icons.svg#cart') }}"></use>
                                                     </svg>
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <input type="hidden" name="product_data" value="{{ json_encode(new ProductResource($product)) }}">
                             </div>
                         @endforeach
                     </div>
