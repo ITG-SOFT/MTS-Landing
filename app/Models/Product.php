@@ -95,6 +95,7 @@ class Product extends Model
 
         $products->with('category');
         $products->with('company');
+        $products->with('photos');
 
         $products->orderBy('title');
 

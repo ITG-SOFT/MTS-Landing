@@ -81,19 +81,21 @@
     'multiple' => true,
 ])
 
-@foreach($product->category->attributes as $attribute)
-    @php
-        $attribute_value = $product->attributeValues()->where('attribute_id', $attribute->id)->first();
-    @endphp
-
+@isset($product)
     <div class="row">
-        <div class="col-md-4">
-            @include('admin.layouts.form.text', [
-                'title' => $attribute->title,
-                'name' => "attributes[{$attribute->id}]",
-                'placeholder' => $attribute->title,
-                'value' => $attribute_value->value ?? null,
-            ])
-        </div>
+        @foreach($product->category->attributes as $attribute)
+            @php
+                $attribute_value = $product->attributeValues()->where('attribute_id', $attribute->id)->first();
+            @endphp
+
+            <div class="col-md-4">
+                @include('admin.layouts.form.text', [
+                    'title' => $attribute->title,
+                    'name' => "attributes[{$attribute->id}]",
+                    'placeholder' => $attribute->title,
+                    'value' => $attribute_value->value ?? null,
+                ])
+            </div>
+        @endforeach
     </div>
-@endforeach
+@endisset

@@ -32,7 +32,6 @@
                                 <tr>
                                     <th style="width: 10px">#</th>
                                     <th>Название</th>
-                                    <th>Псевдоним</th>
                                     <th>Фото</th>
                                     <th>Категория</th>
                                     <th>Компания</th>
@@ -46,7 +45,6 @@
                                     <tr>
                                         <td>{{ $product->id }}</td>
                                         <td>{{ $product->title }}</td>
-                                        <td>{{ $product->slug }}</td>
                                         <td style="text-align: center; background: #303030;">
                                             <img src="{{ $product->getPhoto() }}" alt="{{ $product->title }}" style="width: 10vw;">
                                         </td>
