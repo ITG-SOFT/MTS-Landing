@@ -44,7 +44,7 @@ const removeCompareItem = (id) => {
     compareButton.classList.remove('compare-active');
 
     updateProductCount();
-    showToast('success', 'Товар удалён из сравнения');
+    showToast('success', 'Успех', 'Товар удалён из сравнения');
 };
 
 const updateProductCount = () => {
@@ -133,13 +133,13 @@ compareButtons.forEach(function (item) {
                         }
                     }
 
-                    showToast('success', 'Товар добавлен для сравнения');
+                    showToast('success', 'Успех', 'Товар добавлен для сравнения');
                 }
             } else {
                 removeCompareItem(id);
             }
         } else {
-            showToast('error', 'Товар должен быть из одной категории');
+            showToast('error', 'Ошибка', 'Товар должен быть из одной категории');
         }
         updateProductCount();
     });

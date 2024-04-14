@@ -15,6 +15,7 @@
     <link rel="shortcut icon" href="{{ asset('Fav.png') }}">
     <!-- <meta name="robots" content="noindex, nofollow"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf" content="{{ csrf_token() }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
@@ -249,7 +250,7 @@
                     </div>
                 </div>
                 <div class="footer-copir">
-                    © 2021 УП «МТС БЕЛИНВЕСТ» - провайдер экосистемных продуктов ПАО «МТС» (Российская Федерация) в Республике Беларусь
+                    © {{ date('Y') }}  УП «МТС БЕЛИНВЕСТ» - провайдер экосистемных продуктов ПАО «МТС» (Российская Федерация) в Республике Беларусь
                     Все права защищены
                 </div>
             </div>
@@ -770,6 +771,7 @@
 
     <script src="{{ asset('assets/front/backend/compare.js') }}"></script>
     <script src="{{ asset('assets/front/backend/search.js') }}"></script>
+    <script src="{{ asset('assets/front/backend/subscribe.js') }}"></script>
 </body>
 </html>
 

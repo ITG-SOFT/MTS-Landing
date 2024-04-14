@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('/products', ProductController::class)->only(['show']);
 Route::get('/search', [ProductController::class, 'search'])->name('search');
+
+Route::name('mail.')->prefix('/mail')->group(function () {
+    Route::post('/submit', [HomeController::class, 'submitMail'])->name('submit');
+});

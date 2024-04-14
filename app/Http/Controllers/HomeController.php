@@ -33,11 +33,13 @@ class HomeController extends Controller
             'email' => ['required', 'email', 'max:255', 'unique:mailing_emails,email'],
         ]);
 
-        MailingEmail::query()->create([
+        $result = MailingEmail::query()->create([
             'email' => $request->email,
         ]);
 
-        return redirect()->back();
+        return response()->json([
+            'success' => true,
+        ]);
     }
 
     public function cancelMail(Request $request)

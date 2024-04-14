@@ -29,7 +29,6 @@ use Illuminate\Support\Facades\Route;
 Route::name('front.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::name('mail.')->prefix('/mail')->group(function () {
-        Route::post('/submit', [HomeController::class, 'submitMail'])->name('submit');
         Route::get('/cancel', [HomeController::class, 'cancelMail'])->name('cancel');
         Route::get('/successes-canceled', [HomeController::class, 'cancelMail'])->name('successes-canceled');
     });

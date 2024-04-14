@@ -209,7 +209,7 @@
             </div>
             <div class="subscribe__subtitle">Мы ценим вас и присылаем только нужную информацию, об условиях акций и конкурсов, никакого спама!</div>
             <div class="subscribe-form">
-                <form data-goto-error action="{{ route('front.mail.submit') }}" method="POST">
+                <form data-goto-error action="{{ route('mail.submit') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-block">
                         <input type="text" name="email" data-required="email" data-error="Введите E-mail корректно" placeholder="Введите ваш E-mail" class="input">
