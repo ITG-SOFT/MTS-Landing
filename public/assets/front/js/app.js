@@ -4730,25 +4730,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
     const hearts = document.querySelectorAll(".heart");
     const likeCount = document.querySelector(".like-count");
     const likeCompare = document.querySelector(".compare-count");
@@ -4757,7 +4739,7 @@
     function increaseLikeCount() {
         likeCount.style.display = "flex";
         likeCount.innerText = parseInt(likeCount.innerText) + 1;
-
+        
     }
     function decreaseLikeCount() {
         const currentCount = parseInt(likeCount.innerText);
@@ -4810,17 +4792,17 @@
     hearts.forEach((heart => {
         heart.addEventListener("click", (function() {
             const isActive = this.classList.contains("heart-active");
-
-
+            
+            
             if (isActive) {
                 this.classList.remove("heart-active");
                 decreaseLikeCount();
-                showToast('info', 'Like removed');//тест
-
+                showToast('info', 'Информация', 'Удалено из избранного');//тест
+         
             } else {
                 this.classList.add("heart-active");
                 increaseLikeCount();
-                showToast('success', 'Like added');//тест
+                showToast('success', 'Успешно', 'Добавлено в избранное');//тест
             }
         }));
     }));
@@ -4894,48 +4876,12 @@
     }));
 
 
-
-    // const popupSearchBoxInput = document.querySelector("._search-input");
-    // const searchDropdown = document.querySelector(".drop-search");
-    // const cartBlock = document.querySelector(".search-atem-link__cart");
-    // const dropSearchBlockList = document.querySelector(".drop-search-block-list");
-    // const dropSearchBlockItems = document.querySelector(".drop-search-block-items");
-    // if (popupSearchBoxInput && searchDropdown && cartBlock && dropSearchBlockList && dropSearchBlockItems) {
-    //     let isDropdownOpen = false;
-    //     popupSearchBoxInput.addEventListener("focus", (() => {
-    //         if (!popupSearchBoxInput.classList.contains("_form-focus")) {
-    //             popupSearchBoxInput.classList.add("_form-focus");
-    //             searchDropdown.classList.add("search-dropdown-active");
-    //             isDropdownOpen = true;
-    //         }
-    //     }));
-    //     popupSearchBoxInput.addEventListener("blur", (() => {
-    //         setTimeout((() => {
-    //             if (!searchDropdown.contains(document.activeElement)) {
-    //                 popupSearchBoxInput.classList.remove("_form-focus");
-    //                 if (!cartBlock.contains(document.activeElement)) {
-    //                     searchDropdown.classList.remove("search-dropdown-active");
-    //                     isDropdownOpen = false;
-    //                 }
-    //             }
-    //         }), 0);
-    //     }));
-    //     document.addEventListener("click", (event => {
-    //         const isLinkInsideDropdown = event.target.tagName === "A" && searchDropdown.contains(event.target);
-    //         const isCartBlockClicked = event.target === cartBlock || cartBlock.contains(event.target);
-    //         if (isDropdownOpen && (isLinkInsideDropdown || isCartBlockClicked)) {
-    //             if (isLinkInsideDropdown) console.log("Link clicked:", event.target.href);
-    //             isDropdownOpen = false;
-    //         }
-    //     }));
-    // }
-
     const popupSearchBoxInput = document.querySelector("._search-input");
     const searchDropdown = document.querySelector(".drop-search");
     const cartBlock = document.querySelector(".search-atem-link__cart");
-
+    
     let isDropdownOpen = false;
-
+    
     if (popupSearchBoxInput && searchDropdown ) {
         popupSearchBoxInput.addEventListener("focus", () => {
             if (!popupSearchBoxInput.classList.contains("_form-focus")) {
@@ -4944,7 +4890,7 @@
                 isDropdownOpen = true;
             }
         });
-
+    
         popupSearchBoxInput.addEventListener("blur", () => {
             setTimeout(() => {
                 if (!searchDropdown.contains(document.activeElement)) {
@@ -4956,15 +4902,15 @@
                 }
             }, 0);
         });
-
+    
         document.addEventListener("click", event => {
-            const isCartBlockClicked = event.target === cartBlock || cartBlock.contains(event.target);
+            const isCartBlockClicked = event.target === cartBlock || cartBlock?.contains(event.target);
             if (isDropdownOpen && isCartBlockClicked) {
                 isDropdownOpen = false;
             }
         });
     }
-
+    
 
 
 
