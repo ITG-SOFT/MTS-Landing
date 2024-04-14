@@ -255,7 +255,7 @@
             </div>
         </footer>
     </div>
-    <script src="{{ asset('assets/front/js/app.min.js?_v=20240408125514') }}"></script>
+    <script src="{{ asset('assets/front/js/app.js') }}"></script>
 
     <div id="popup" aria-hidden="true" class="popup">
         <div class="popup__wrapper">
@@ -648,6 +648,8 @@
 
     @include('front.layouts.compared')
 
+    @include('front.layouts.messages')
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js?_v=20240408205909"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js?_v=20240408205909"></script>
     <script>
@@ -763,6 +765,8 @@
         });
     </script>
 
+    <script src="{{ asset('assets/front/js/toast.js') }}"></script>
+    <script src="{{ asset('assets/front/js/slick.js') }}"></script>
 
     <script src="{{ asset('assets/front/backend/compare.js') }}"></script>
     <script src="{{ asset('assets/front/backend/search.js') }}"></script>

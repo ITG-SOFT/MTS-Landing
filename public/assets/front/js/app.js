@@ -4748,7 +4748,7 @@
 
 
 
-    
+
     const hearts = document.querySelectorAll(".heart");
     const likeCount = document.querySelector(".like-count");
     const likeCompare = document.querySelector(".compare-count");
@@ -4757,7 +4757,7 @@
     function increaseLikeCount() {
         likeCount.style.display = "flex";
         likeCount.innerText = parseInt(likeCount.innerText) + 1;
-        
+
     }
     function decreaseLikeCount() {
         const currentCount = parseInt(likeCount.innerText);
@@ -4810,13 +4810,13 @@
     hearts.forEach((heart => {
         heart.addEventListener("click", (function() {
             const isActive = this.classList.contains("heart-active");
-            
-            
+
+
             if (isActive) {
                 this.classList.remove("heart-active");
                 decreaseLikeCount();
                 showToast('info', 'Like removed');//тест
-         
+
             } else {
                 this.classList.add("heart-active");
                 increaseLikeCount();
@@ -4933,9 +4933,9 @@
     const popupSearchBoxInput = document.querySelector("._search-input");
     const searchDropdown = document.querySelector(".drop-search");
     const cartBlock = document.querySelector(".search-atem-link__cart");
-    
+
     let isDropdownOpen = false;
-    
+
     if (popupSearchBoxInput && searchDropdown ) {
         popupSearchBoxInput.addEventListener("focus", () => {
             if (!popupSearchBoxInput.classList.contains("_form-focus")) {
@@ -4944,7 +4944,7 @@
                 isDropdownOpen = true;
             }
         });
-    
+
         popupSearchBoxInput.addEventListener("blur", () => {
             setTimeout(() => {
                 if (!searchDropdown.contains(document.activeElement)) {
@@ -4956,7 +4956,7 @@
                 }
             }, 0);
         });
-    
+
         document.addEventListener("click", event => {
             const isCartBlockClicked = event.target === cartBlock || cartBlock.contains(event.target);
             if (isDropdownOpen && isCartBlockClicked) {
@@ -4964,7 +4964,7 @@
             }
         });
     }
-    
+
 
 
 

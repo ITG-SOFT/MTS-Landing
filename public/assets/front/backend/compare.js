@@ -44,6 +44,7 @@ const removeCompareItem = (id) => {
     compareButton.classList.remove('compare-active');
 
     updateProductCount();
+    showToast('success', 'Товар удалён из сравнения');
 };
 
 const updateProductCount = () => {
@@ -136,8 +137,6 @@ compareButtons.forEach(function (item) {
                 }
             } else {
                 removeCompareItem(id);
-
-                showToast('success', 'Товар удалён из сравнения');
             }
         } else {
             showToast('error', 'Товар должен быть из одной категории');
