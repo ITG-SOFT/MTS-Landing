@@ -29,6 +29,7 @@ class ProductController extends Controller
 
         $products->with('company');
         $products->with('category');
+        $products->with('photos');
         $products->orderBy('created_at', 'DESC');
 
         $products = $products->get();

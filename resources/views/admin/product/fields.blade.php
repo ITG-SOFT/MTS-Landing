@@ -67,15 +67,33 @@
     </div>
 </div>
 
+@include('admin.layouts.form.textarea', [
+    'title' => 'Текст*',
+    'name' => 'text',
+    'placeholder' => "Текст",
+    'value' => $product->text ?? null,
+])
+
+@include('admin.layouts.form.filepond-file', [
+    'title' => 'Фотографии для галереи',
+    'name' => 'photos[]',
+    'id' => 'photos',
+    'multiple' => true,
+])
+
 @foreach($product->category->attributes as $attribute)
     @php
         $attribute_value = $product->attributeValues()->where('attribute_id', $attribute->id)->first();
     @endphp
 
-    @include('admin.layouts.form.text', [
-        'title' => $attribute->title,
-        'name' => "attributes[{$attribute->id}]",
-        'placeholder' => $attribute->title,
-        'value' => $attribute_value->value ?? null,
-    ])
+    <div class="row">
+        <div class="col-md-4">
+            @include('admin.layouts.form.text', [
+                'title' => $attribute->title,
+                'name' => "attributes[{$attribute->id}]",
+                'placeholder' => $attribute->title,
+                'value' => $attribute_value->value ?? null,
+            ])
+        </div>
+    </div>
 @endforeach

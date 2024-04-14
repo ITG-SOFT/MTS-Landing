@@ -30,9 +30,13 @@ class ProductRequest extends FormRequest
             'company_id' => ['required', 'integer', 'exists:companies,id'],
             'price' => ['required', 'decimal:0,2'],
             'sale_price' => ['nullable', 'decimal:0,2'],
+            'text' => ['required'],
 
             'attributes' => ['nullable', 'array'],
             'attributes.*' => ['nullable', 'max:255'],
+
+            'photos' => ['nullable', 'array'],
+            'photos.*' => ['nullable'],
         ];
     }
 }

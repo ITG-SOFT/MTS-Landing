@@ -25,6 +25,7 @@ class Product extends Model
         'company_id',
         'price',
         'sale_price',
+        'text',
     ];
 
     protected $casts = [
@@ -42,9 +43,19 @@ class Product extends Model
         return $this->belongsTo(Company::class);
     }
 
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class);
+    }
+
     public function attributeValues()
     {
         return $this->hasMany(AttributeValue::class);
+    }
+
+    public function photos()
+    {
+        return $this->morphMany(Photo::class, 'imaginable');
     }
 
     public function getPrice()
@@ -102,7 +113,16 @@ class Product extends Model
             $product->updateAttributes($data['attributes']);
         }
 
-        MailingEmail::sendNewItem($product);
+        if (isset($data['photos'])) {
+            foreach ($data['photos'] as $photo) {
+                $photo = self::uploadPath($photo);
+                $product->photos()->create([
+                    'path' => $photo,
+                ]);
+            }
+        }
+
+//        MailingEmail::sendNewItem($product);
 
 //        TemporaryFile::clearTmpFiles();
         return $product;
@@ -117,7 +137,16 @@ class Product extends Model
             $product->updateAttributes($data['attributes']);
         }
 
-        MailingEmail::sendNewItem($product);
+        if (isset($data['photos'])) {
+            foreach ($data['photos'] as $photo) {
+                $photo = self::uploadPath($photo);
+                $product->photos()->create([
+                    'path' => $photo,
+                ]);
+            }
+        }
+
+//        MailingEmail::sendNewItem($product);
 
 //        TemporaryFile::clearTmpFiles();
         return $product->update($data);
@@ -126,6 +155,10 @@ class Product extends Model
     public static function deleteProduct(self $product)
     {
         Storage::delete($product->photo);
+
+        foreach ($product->photos as $photo) {
+            Photo::deletePhoto($photo);
+        }
 
         return $product->delete();
     }
@@ -137,6 +170,15 @@ class Product extends Model
             key: 'photo',
             request: $request,
             file: $image,
+        );
+    }
+
+    public static function uploadPath(string $file, $file_old = null)
+    {
+        return self::uploadMaterialFileFilepond(
+            path: 'products/photos',
+            file: $file,
+            image: $file_old,
         );
     }
 

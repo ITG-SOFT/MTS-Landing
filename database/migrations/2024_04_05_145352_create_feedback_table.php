@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('photo');
             $table->integer('rate');
             $table->text('text');
+            $table->foreignId('product_id')->constrained()->onDelete('CASCADE');
             $table->timestamps();
         });
     }

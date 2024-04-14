@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('company_id')->constrained()->onDelete('CASCADE');
             $table->decimal('price', 10, 2);
             $table->decimal('sale_price', 10, 2)->nullable();
+            $table->text('text');
             $table->timestamps();
         });
     }

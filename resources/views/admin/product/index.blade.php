@@ -37,6 +37,7 @@
                                     <th>Категория</th>
                                     <th>Компания</th>
                                     <th>Цена</th>
+                                    <th>Фотографии</th>
                                     <th>Действия</th>
                                 </tr>
                             </thead>
@@ -57,6 +58,9 @@
                                                 <p style="text-decoration: line-through;">{{ $product->price }}</p>
                                             @endif
                                         </td>
+                                        @include('admin.photo.index-td', [
+                                            'photos' => $product->photos,
+                                        ])
                                         <td>
                                             <a href="{{ route("admin.products.edit", [$product]) }}" class="btn btn-info btn-sm float-left mr-1">
                                                 <i class="fas fa-pencil-alt"></i>
