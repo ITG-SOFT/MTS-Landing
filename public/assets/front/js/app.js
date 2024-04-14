@@ -4728,7 +4728,7 @@
         } else if (sibscribeButton) sibscribeButton.disabled = true;
     }));
 
-
+/////////////////////////
 
     
     const hearts = document.querySelectorAll(".heart");
@@ -4797,7 +4797,7 @@
             if (isActive) {
                 this.classList.remove("heart-active");
                 decreaseLikeCount();
-                showToast('info', 'Информация', 'Удалено из избранного');//тест
+                showToast('success', 'Успешно', 'Удалено из избранного');//тест
          
             } else {
                 this.classList.add("heart-active");
@@ -4855,25 +4855,54 @@
     heartElements.forEach((heart => {
         heart.addEventListener("click", addRowsToTable);
     }));
-    document.addEventListener("DOMContentLoaded", (function() {
-        const tabButtons = document.querySelectorAll("[data-tabs-titles] .tabs__title");
-        const tabContents = document.querySelectorAll("[data-tabs-body] .tabs__body");
-        tabContents.forEach(((content, index) => {
-            if (index !== 0) content.style.display = "none";
-        }));
-        tabButtons.forEach(((button, index) => {
-            button.addEventListener("click", (() => {
-                tabContents.forEach((content => {
-                    content.style.display = "none";
-                }));
-                tabContents[index].style.display = "block";
-                tabButtons.forEach((btn => {
-                    btn.classList.remove("_tab-active");
-                }));
-                button.classList.add("_tab-active");
-            }));
-        }));
-    }));
+
+///////////////////////
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const tabSets = document.querySelectorAll("[data-tabs]");
+
+    tabSets.forEach(tabSet => {
+        const tabButtons = tabSet.querySelectorAll(".tabs__title");
+        const tabContents = tabSet.querySelectorAll(".tabs__body");
+
+        // Открываем первый таб в текущем наборе
+        if (tabButtons.length > 0 && tabContents.length > 0) {
+            tabContents[0].style.display = "block";
+            tabButtons[0].classList.add("_tab-active");
+        }
+
+        // Добавляем обработчик события клика для контейнера с табами
+        tabSet.addEventListener("click", function(event) {
+            const clickedTab = event.target.closest(".tabs__title");
+            if (!clickedTab) return; // Если клик был сделан не на кнопке таба, прекратить выполнение кода
+
+            // Получаем индекс выбранного таба
+            const selectedIndex = Array.from(tabButtons).indexOf(clickedTab);
+
+            // Скрываем все табы и удаляем активный класс у всех кнопок
+            tabContents.forEach(content => {
+                content.style.display = "none";
+            });
+            tabButtons.forEach(button => {
+                button.classList.remove("_tab-active");
+            });
+
+            // Показываем содержимое выбранного таба и добавляем ему активный класс
+            tabContents[selectedIndex].style.display = "block";
+            tabButtons[selectedIndex].classList.add("_tab-active");
+        });
+    });
+});
 
 
     const popupSearchBoxInput = document.querySelector("._search-input");

@@ -92,7 +92,8 @@ textarea {
   font-size: inherit;
   line-height: inherit;
   color: inherit;
-  background-color: transparent
+  background-color: transparent;
+  outline: none;
 }
 input,
 textarea {
@@ -828,7 +829,7 @@ body::after {
   border-radius: 10px;
   padding: 30px 70px
 }
-#product__slider {
+.product__slider {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-column-gap: 10px
@@ -850,8 +851,8 @@ body::after {
   overflow: hidden
 }
 .img-responsive {
-  max-width: 490px;
-  height: 542px
+  max-width: 510px;
+  height: 480px
 }
 .product__slider-thmb {
   width: 90px;
@@ -867,6 +868,11 @@ body::after {
 }
 .slick-next.slick-arrow {
   display: none
+}
+.slick-slide img {
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 .popup-card-info__type {
   color: #b2b5b7;
@@ -972,7 +978,9 @@ body::after {
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  line-height: 20px
+  line-height: 20px;
+   display: none;
+
 }
 .tabs__body h5 {
   color: #000;
@@ -1980,7 +1988,9 @@ body::after {
 }
 .main-bestseller-block-card__head-image img {
   max-width: 278px;
-  width: 100%
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
 }
 .main-bestseller-block-card__head-favorit {
   position: absolute;
@@ -2063,7 +2073,7 @@ body::after {
   stroke: #b2b5b7
 }
 .compare-active svg {
-  stroke: #e30611
+  stroke: #e30611;
 }
 .body-coast-block {
   margin-top: 8px
@@ -2143,6 +2153,9 @@ body::after {
   font-weight: 700;
   line-height: clamp(32px,2.239vw,43px);
   margin-bottom: 5px
+}
+.compare-active svg {
+  stroke: #e30611
 }
 .main-banner-block-info__text {
   color: #fff;
@@ -3662,7 +3675,7 @@ button.swiper-pagination-bullet {
   .popup-card {
     flex-direction: column
   }
-  #product__slider {
+  .product__slider {
     display: flex;
     flex-direction: column-reverse;
     gap: 20px
@@ -3788,9 +3801,9 @@ button.swiper-pagination-bullet {
   .img-responsive {
     height: 204px;
     width: 100%;
-    max: 100%;
-    -o-object-fit: contain;
-    object-fit: contain
+    max-width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
   }
 }
 @media (max-width:525px) {
