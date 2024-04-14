@@ -101,7 +101,7 @@ Breadcrumbs::for('admin.feedbacks.create', function (BreadcrumbTrail $trail) {
 // Home > Feedback > Edit
 Breadcrumbs::for('admin.feedbacks.edit', function (BreadcrumbTrail $trail, Feedback $feedback) {
     $trail->parent('admin.feedbacks.index');
-    $trail->push(str($feedback->title)->words(4), route('admin.feedbacks.edit', [$feedback]));
+    $trail->push(str($feedback->name)->words(4), route('admin.feedbacks.edit', [$feedback]));
 });
 
 // Product

@@ -20,11 +20,18 @@ class Feedback extends Model
         'photo',
         'rate',
         'text',
+        'product_id',
     ];
 
     protected $casts = [
         'rate' => 'integer',
+        'product_id' => 'integer',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 
     public function getCreatedAt($format = 'd M Y')
     {

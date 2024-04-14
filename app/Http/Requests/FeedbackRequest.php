@@ -26,6 +26,7 @@ class FeedbackRequest extends FormRequest
             'photo' => [($this->method() == 'POST') ? 'required' : 'nullable', 'string'],
             'rate' => ['required', 'integer', 'min:1', 'max:5'],
             'text' => ['required'],
+            'product_id' => ['required', 'integer', 'exists:products,id'],
         ];
     }
 }

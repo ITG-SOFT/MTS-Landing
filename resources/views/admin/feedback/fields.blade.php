@@ -24,6 +24,16 @@
     </div>
 </div>
 
+@isset($products)
+    @include('admin.layouts.form.select', [
+        'title' => 'На какой продукт отзыв*',
+        'name' => 'product_id',
+        'pre_text' => 'Выберите продукт',
+        'items' => $products,
+        'value' => $feedback->product_id ?? null,
+    ])
+@endisset
+
 @include('admin.layouts.form.textarea', [
     'title' => 'Текст*',
     'name' => 'text',
